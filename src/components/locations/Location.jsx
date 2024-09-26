@@ -4,7 +4,7 @@ import { getAllLocations } from "../../services/locationService.jsx";
 import { getAllUsers } from "../../services/userService.jsx";
 import "./Locations.css";
 
-export const Location = () => {
+export const Location = ({ currentUser }) => {
   const { locationId } = useParams();
   const [location, setLocation] = useState(null);
   const [users, setUsers] = useState([]);
@@ -47,6 +47,14 @@ export const Location = () => {
     return stars;
   };
 
+  const handleEditClick = (reviewId) => {
+    navigate(`/locations/${locationId}/edit/${reviewId}`);
+  };
+
+  // const handleDeleteClick = (reviewId) => {
+  //   // Add delete logic here
+  // };
+
   if (!location || users.length === 0) return <p>Loading...</p>;
 
   return (
@@ -81,6 +89,7 @@ export const Location = () => {
       <div className="reviews">
         {location.ratings.map((review) => {
           const user = users.find((user) => user.id === review.userId);
+          const isCurrentUser = currentUser && currentUser.id === review.userId;
           return (
             <div key={review.id} className="review-card">
               <div className="review-header">
@@ -104,6 +113,41 @@ export const Location = () => {
                 </span>
               </div>
               <p className="review-comment">{review.comment}</p>
+
+              {/* Show the dropdown menu only if the review belongs to the current user */}
+              {isCurrentUser && (
+                <div className="d-flex justify-content-end">
+                  <div className="dropdown">
+                    <button
+                      className="btn btn-link dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i className="bi bi-three-dots"></i>
+                    </button>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <li>
+                        <button
+                          className="dropdown-item"
+                          onClick={() => handleEditClick(review.id)}
+                        >
+                          Edit
+                        </button>
+                      </li>
+                      <li>
+                        {/* <button
+                          className="dropdown-item"
+                          onClick={() => handleDeleteClick(review.id)}
+                        >
+                          Delete
+                        </button> */}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           );
         })}

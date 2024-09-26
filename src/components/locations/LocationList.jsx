@@ -19,6 +19,10 @@ export const LocationList = () => {
     navigate(`/locations/${id}`);
   };
 
+  const handleNewRatingClick = () => {
+    navigate("/locations/new-rating");
+  };
+
   const filteredLocations = locations.filter((location) => {
     return location.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
@@ -47,8 +51,18 @@ export const LocationList = () => {
 
   return (
     <div className="location-list">
-      <h1>Bathroom Locations and Ratings</h1>
-      <LocationFilterBar setSearchTerm={setSearchTerm} />
+      <h1>All Locations & Ratings</h1>
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="col-9"><LocationFilterBar setSearchTerm={setSearchTerm} /></div>
+        
+        <button
+          className="btn btn-primary my-3 p-1 col-2"
+          onClick={handleNewRatingClick}
+        >
+          New Rating
+        </button>
+      </div>
+
       <div className="location-cards">
         {filteredLocations.map((location) => (
           <div

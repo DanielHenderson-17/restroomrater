@@ -129,6 +129,7 @@ export const RateLocation = ({ currentUser }) => {
             <button
               type="button"
               className="btn btn-secondary my-2 me-3 text-end"
+              onClick={() => navigate(`/locations/${locationId}`)}  // Navigate back to the location page
             >
               Cancel
             </button>

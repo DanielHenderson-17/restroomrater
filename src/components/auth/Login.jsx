@@ -18,8 +18,11 @@ export const Login = () => {
           "rr_user",
           JSON.stringify({
             id: user.id,
+            email: user.email,
             name: user.name,
-            imgUrl: user.imgUrl
+            imgUrl: user.imgUrl,
+            totalRatings: user.imgUrl,
+            averageRatings: user.averageRatings
           })
         )
 

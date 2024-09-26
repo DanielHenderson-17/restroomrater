@@ -5,7 +5,6 @@ h1 {
 .filter-bar {
   text-align: center;
   width: 100%;
-  margin-bottom: 20px;
 }
 .filter-bar input {
   width: 92%;
@@ -149,4 +148,12 @@ text-align: left;
   border: 1px solid rgb(0, 84, 133);
   background-color: rgb(39, 168, 211);
   color: rgb(255, 255, 255);
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.new-rating-text-area {
+  height: 200px;
 }

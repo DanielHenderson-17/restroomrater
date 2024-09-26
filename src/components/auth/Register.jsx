@@ -1,15 +1,17 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import "./Login.css"
-import { createUser, getUserByEmail } from "../../services/userService"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
+import { createUser, getUserByEmail } from "../../services/userService";
 
 export const Register = (props) => {
   const [customer, setCustomer] = useState({
     email: "",
     name: "",
     imgUrl: "",
-  })
-  let navigate = useNavigate()
+    totalRatings: 0,
+    averageRatings: 0,
+  });
+  let navigate = useNavigate();
 
   const registerNewUser = () => {
     createUser(customer).then((createdUser) => {
@@ -17,33 +19,38 @@ export const Register = (props) => {
         localStorage.setItem(
           "rr_user",
           JSON.stringify({
-            id: createdUser.id
+            id: createdUser.id,
+            email: createdUser.email,
+            name: createdUser.name,
+            imgUrl: createdUser.imgUrl,
+            totalRatings: createdUser.imgUrl,
+            averageRatings: createdUser.averageRatings,
           })
-        )
+        );
 
-        navigate("/")
+        navigate("/");
       }
-    })
-  }
+    });
+  };
 
   const handleRegister = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     getUserByEmail(customer.email).then((response) => {
       if (response.length > 0) {
         // Duplicate email. No good.
-        window.alert("Account with that email address already exists")
+        window.alert("Account with that email address already exists");
       } else {
         // Good email, create user.
-        registerNewUser()
+        registerNewUser();
       }
-    })
-  }
+    });
+  };
 
   const updateCustomer = (evt) => {
-    const copy = { ...customer }
-    copy[evt.target.id] = evt.target.value
-    setCustomer(copy)
-  }
+    const copy = { ...customer };
+    copy[evt.target.id] = evt.target.value;
+    setCustomer(copy);
+  };
 
   return (
     <main style={{ textAlign: "center" }}>
@@ -97,5 +104,5 @@ export const Register = (props) => {
         </fieldset>
       </form>
     </main>
-  )
-}
+  );
+};
