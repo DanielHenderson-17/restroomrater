@@ -1,139 +1,146 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "name": "Daniel Henderson",
-        "email": "djhindu17@gmail.com"
-      },
-      {
-        "id": 2,
-        "name": "Jane Doe",
-        "email": "jane.doe@example.com"
-      },
-      {
-        "id": 3,
-        "name": "John Smith",
-        "email": "john.smith@example.com"
-      },
-      {
-        "id": 4,
-        "name": "Emily Johnson",
-        "email": "emily.johnson@example.com"
-      },
-      {
-        "id": 5,
-        "name": "Michael Brown",
-        "email": "michael.brown@example.com"
-      }      
-    ],
-    "locations": [
-      {
-        "id": 1,
-        "name": "Exxon Mobile",
-        "address": "1234 Cherry Street",
-        "city": "Nashville",
-        "state": "TN",
-        "imgUrl": "https://cdn.winsightmedia.com/platform/files/public/2020-08/background/800x1000/Exxon_Station_1596749449.jpg?VersionId=VtIpuIN2iem0USHQ6cmTnUlktTg8994b.png"
-      },
-      {
-        "id": 2,
-        "name": "Shell Gas Station",
-        "address": "5678 Elm Street",
-        "city": "Murfreesboro",
-        "state": "TN",
-        "imgUrl": "https://headlight.news/wp-content/uploads/2024/03/Shell-Gas-Station.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Pilot Travel Center",
-        "address": "7890 Maple Avenue",
-        "city": "Franklin",
-        "state": "TN",
-        "imgUrl": "https://pilotflyingj.com/media/pr2nrzrk/greenfield-in-external-storefront.jpg"
-      },
-      {
-        "id": 4,
-        "name": "Love's Travel Stop",
-        "address": "2468 Oak Drive",
-        "city": "Nashville",
-        "state": "TN",
-        "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Love%27s_Travel_Stop_%28Bushnell%2C_Fla.%29_%2849417678437%29.jpg"
-      },
-      {
-        "id": 5,
-        "name": "BP Gas Station",
-        "address": "1357 Pine Road",
-        "city": "Murfreesboro",
-        "state": "TN",
-        "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
-      },
-      {
-        "id": 6,
-        "name": "BP Gas Station",
-        "address": "1818 Somewhere Street",
-        "city": "Murfreesboro",
-        "state": "TN",
-        "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
-      }
-    ],
-    "ratings": [
-      {
-        "id": 1,
-        "stars": 4,
-        "comment": "Clean and well-maintained. I like this place because they are always on top of their game. They seem to care about sanitation! It's clear they put effort into keeping the restroom spotless, which makes me feel comfortable using it regularly.",
-        "date": "2024-09-18T12:00:00",
-        "userId": 1,
-        "locationId": 1
-      },
-      {
-        "id": 2,
-        "stars": 3,
-        "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness. A little extra effort could go a long way here.",
-        "date": "2024-09-17T14:30:00",
-        "userId": 2,
-        "locationId": 2
-      },
-      {
-        "id": 3,
-        "stars": 5,
-        "comment": "Very clean and accessible! I have nothing but good to say about these. Everything was spotless, and the restroom was easy to access, which made the whole experience stress-free. Definitely one of the better places I’ve visited.",
-        "date": "2024-09-16T11:45:00",
-        "userId": 3,
-        "locationId": 3
-      },
-      {
-        "id": 4,
-        "stars": 2,
-        "comment": "Dirty and smelly. The entire restroom seemed like it hadn’t been cleaned in a while, and the odor was really off-putting. It's disappointing because a clean restroom is such a basic necessity, and this one failed to meet even that standard.",
-        "date": "2024-09-15T16:00:00",
-        "userId": 4,
-        "locationId": 4
-      },
-      {
-        "id": 5,
-        "stars": 1,
-        "comment": "Terrible experience, very unhygienic. It felt like no one had taken care of this place in ages. The floors were dirty, there was a bad smell, and it was an overall unpleasant experience. I would avoid coming back here.",
-        "date": "2024-09-14T09:30:00",
-        "userId": 5,
-        "locationId": 5
-      },
-      {
-        "id": 6,
-        "stars": 2,
-        "comment": "It was nasty! I could barely stand being in there, and the overall cleanliness was just not acceptable. This place really needs a deep clean before I would consider using it again.",
-        "date": "2024-09-18T12:00:00",
-        "userId": 2,
-        "locationId": 1
-      },
-      {
-        "id": 7,
-        "stars": 2,
-        "comment": "It was nasty! Just like the other place I visited, the condition of this restroom was really poor. There seems to be a pattern here with inadequate cleaning standards. Not a good experience at all.",
-        "date": "2024-09-18T12:00:00",
-        "userId": 2,
-        "locationId": 6
-      }
-      
-    ]
-  }
-  
+  "users": [
+    {
+      "id": 1,
+      "name": "Daniel Henderson",
+      "email": "djhindu17@gmail.com",
+      "imgUrl": "https://danielhenderson17.com/img/Portrait.png"
+    },
+    {
+      "email": "djhindu17@aol.com",
+      "name": "Daniel Henderson",
+      "imgUrl": "https://danielhenderson17.com/img/Portrait.png",
+      "id": 2
+    },
+    {
+      "email": "zombielynxgaming@gmail.com",
+      "name": "ZombieLynxGaming",
+      "imgUrl": "https://zlg.gg/assets/images/normallynx.png",
+      "id": 3
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Exxon Mobile",
+      "address": "1234 Cherry Street",
+      "city": "Nashville",
+      "state": "TN",
+      "imgUrl": "https://cdn.winsightmedia.com/platform/files/public/2020-08/background/800x1000/Exxon_Station_1596749449.jpg?VersionId=VtIpuIN2iem0USHQ6cmTnUlktTg8994b.png"
+    },
+    {
+      "id": 2,
+      "name": "Shell Gas Station",
+      "address": "5678 Elm Street",
+      "city": "Murfreesboro",
+      "state": "TN",
+      "imgUrl": "https://headlight.news/wp-content/uploads/2024/03/Shell-Gas-Station.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Pilot Travel Center",
+      "address": "7890 Maple Avenue",
+      "city": "Franklin",
+      "state": "TN",
+      "imgUrl": "https://pilotflyingj.com/media/pr2nrzrk/greenfield-in-external-storefront.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Love's Travel Stop",
+      "address": "2468 Oak Drive",
+      "city": "Nashville",
+      "state": "TN",
+      "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Love%27s_Travel_Stop_%28Bushnell%2C_Fla.%29_%2849417678437%29.jpg"
+    },
+    {
+      "id": 5,
+      "name": "BP Gas Station",
+      "address": "1357 Pine Road",
+      "city": "Murfreesboro",
+      "state": "TN",
+      "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
+    },
+    {
+      "id": 6,
+      "name": "BP Gas Station",
+      "address": "1818 Somewhere Street",
+      "city": "Murfreesboro",
+      "state": "TN",
+      "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
+    }
+  ],
+  "ratings": [
+    {
+      "id": 1,
+      "stars": 4,
+      "comment": "Clean and well-maintained. I like this place because they are always on top of their game. They seem to care about sanitation! It's clear they put effort into keeping the restroom spotless, which makes me feel comfortable using it regularly.",
+      "date": "2024-09-18T12:00:00",
+      "userId": 1,
+      "locationId": 1
+    },
+    {
+      "id": 2,
+      "stars": 3,
+      "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness. A little extra effort could go a long way here.",
+      "date": "2024-09-17T14:30:00",
+      "userId": 2,
+      "locationId": 2
+    },
+    {
+      "id": 3,
+      "stars": 5,
+      "comment": "Very clean and accessible! I have nothing but good to say about these. Everything was spotless, and the restroom was easy to access, which made the whole experience stress-free. Definitely one of the better places I’ve visited.",
+      "date": "2024-09-16T11:45:00",
+      "userId": 3,
+      "locationId": 3
+    },
+    {
+      "id": 4,
+      "stars": 2,
+      "comment": "Dirty and smelly. The entire restroom seemed like it hadn’t been cleaned in a while, and the odor was really off-putting. It's disappointing because a clean restroom is such a basic necessity, and this one failed to meet even that standard.",
+      "date": "2024-09-15T16:00:00",
+      "userId": 3,
+      "locationId": 4
+    },
+    {
+      "id": 5,
+      "stars": 1,
+      "comment": "Terrible experience, very unhygienic. It felt like no one had taken care of this place in ages. The floors were dirty, there was a bad smell, and it was an overall unpleasant experience. I would avoid coming back here.",
+      "date": "2024-09-14T09:30:00",
+      "userId": 2,
+      "locationId": 5
+    },
+    {
+      "id": 6,
+      "stars": 2,
+      "comment": "It was nasty! I could barely stand being in there, and the overall cleanliness was just not acceptable. This place really needs a deep clean before I would consider using it again.",
+      "date": "2024-09-18T12:00:00",
+      "userId": 2,
+      "locationId": 1
+    },
+    {
+      "id": 7,
+      "stars": 2,
+      "comment": "It was nasty! Just like the other place I visited, the condition of this restroom was really poor. There seems to be a pattern here with inadequate cleaning standards. Not a good experience at all.",
+      "date": "2024-09-18T12:00:00",
+      "userId": 2,
+      "locationId": 6
+    },
+    {
+      "userId": 3,
+      "stars": 4,
+      "comment": "Man it was a blast!",
+      "locationId": 1,
+      "date": "2024-09-26T01:13:21.390Z",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "stars": 4,
+      "comment": "i needed to test again\n",
+      "locationId": 2,
+      "date": "2024-09-26T01:14:43.445Z",
+      "id": 9
+    }
+  ]
+}

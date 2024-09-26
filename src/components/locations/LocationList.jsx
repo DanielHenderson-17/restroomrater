@@ -65,8 +65,8 @@ export const LocationList = () => {
               alt={`${location.name}`}
               className="location-image"
             />
-            <div className="location-details">
-              <h2>{location.name}</h2>
+            <div className="location-details2">
+              <h5>{location.name}</h5>
               <p>{location.address}</p>
               <p>
                 {location.city}, {location.state}

@@ -28,6 +28,7 @@ gap: 20px;
 width: 400px;
 background-color: #ffffff;
 margin: 0 auto;
+margin-top: 50px;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -42,11 +43,15 @@ height: 150px;
 border-radius: 0;
 }
 
-.location-details {
+.location-details, .location-details2 {
 width: 100%;
 text-align: center;
 display: flex;
 flex-direction: column;
+}
+
+.location-details, .location-list {
+  background-color: #f2f4f7;
 }
 
 .ratings {
@@ -85,6 +90,7 @@ margin: 0 !important;
 
 /* Review card section */
 .review-card {
+  background-color: white;
 margin: 0 auto;
 width: 30%;
 border: 1px solid #ccc;
@@ -137,4 +143,10 @@ font-size: 16px;
 color: #555;
 margin-top: 10px;
 text-align: left;
+}
+
+.btn {
+  border: 1px solid rgb(0, 84, 133);
+  background-color: rgb(39, 168, 211);
+  color: rgb(255, 255, 255);
 }

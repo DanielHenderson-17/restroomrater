@@ -27,27 +27,22 @@ export const NavBar = () => {
         <li className="navbar-item">
           <Link to="/patrons">Patrons</Link>
         </li>
-        {localStorage.getItem("honey_user") ? (
-          <li className="navbar-item navbar-logout">
-            {" "}
-            {/* replace with user created*/}
-            <Link
-              className="navbar-link"
-              to=""
-              onClick={() => {
-                localStorage.removeItem("honey_user");
-                {
-                  /* replace with user created*/
-                }
-                navigate("/", { replace: true });
-              }}
-            >
-              Logout
-            </Link>
-          </li>
-        ) : (
-          ""
-        )}
+        {localStorage.getItem("rr_user") ? (
+            <li className="navbar-item navbar-logout">
+              <Link
+                className="navbar-link"
+                to=""
+                onClick={() => {
+                  localStorage.removeItem("rr_user");
+                  navigate("/", { replace: true });
+                }}
+              >
+                Logout
+              </Link>
+            </li>
+          ) : (
+            ""
+          )}
       </ul>
     </nav>
   );

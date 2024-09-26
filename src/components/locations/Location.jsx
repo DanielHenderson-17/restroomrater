@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getAllLocations } from "../../services/locationService.jsx";
 import { getAllUsers } from "../../services/userService.jsx";
 import "./Locations.css";
@@ -8,6 +8,7 @@ export const Location = () => {
   const { locationId } = useParams();
   const [location, setLocation] = useState(null);
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllLocations().then((fetchedLocations) => {
@@ -56,39 +57,57 @@ export const Location = () => {
           alt={location.name}
           className="location-image"
         />
-        <div className="location-details">
+        <div className="location-details2">
           <h2>{location.name}</h2>
           <p>{location.address}</p>
           <p>
             {location.city}, {location.state}
           </p>
-          <p className="rating-stars">
-            {renderStars(calculateAverageRating(location.ratings))}
-          </p>
-          <p>({location.ratings.length})</p>
+          <div className="d-flex justify-content-center align-items-center">
+            <p className="rating-stars mx-2">
+              {renderStars(calculateAverageRating(location.ratings))}
+            </p>
+            <p className="pt-1">({location.ratings.length})</p>
+          </div>
+          <button
+            className="btn w-50 mx-auto p-0 mt-2"
+            onClick={() => navigate(`/locations/${locationId}/rate`)}
+          >
+            Rate
+          </button>
         </div>
       </div>
-
-      <h3>Reviews</h3>
+      <h3 className="mt-5 mb-3">Reviews</h3>
       <div className="reviews">
-  {location.ratings.map((review) => {
-    const user = users.find(user => user.id === review.userId);
-    return (
-      <div key={review.id} className="review-card">
-        <div className="review-header">
-          <img src="https://via.placeholder.com/40" alt="user avatar" className="review-avatar" />
-          <strong>{user ? user.name : "Unknown User"}</strong>
-        </div>
-        <div className="review-rating-date">
-          <span className="rating-stars">{renderStars(review.stars)}</span>
-          <span className="review-date">{new Date(review.date).toLocaleDateString()}</span>
-        </div>
-        <p className="review-comment">{review.comment}</p>
+        {location.ratings.map((review) => {
+          const user = users.find((user) => user.id === review.userId);
+          return (
+            <div key={review.id} className="review-card">
+              <div className="review-header">
+                <img
+                  src={
+                    user && user.imgUrl
+                      ? user.imgUrl
+                      : "https://via.placeholder.com/40"
+                  }
+                  alt="user avatar"
+                  className="review-avatar"
+                />
+                <strong>{user ? user.name : "Unknown User"}</strong>
+              </div>
+              <div className="review-rating-date">
+                <span className="rating-stars">
+                  {renderStars(review.stars)}
+                </span>
+                <span className="review-date">
+                  {new Date(review.date).toLocaleDateString()}
+                </span>
+              </div>
+              <p className="review-comment">{review.comment}</p>
+            </div>
+          );
+        })}
       </div>
-    );
-  })}
-</div>
-
     </div>
   );
 };
