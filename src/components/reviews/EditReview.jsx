@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  getReviewById,
-  updateRating,
-  deleteRating,
-} from "../../services/locationService.jsx";
+import { getReviewById, updateRating, deleteRating } from "../../services/locationService.jsx";
+import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
 import "./RateLocation.css";
 
-export const EditReview = ({ currentUser, updateLocations }) => { 
+export const EditReview = ({ currentUser, updateLocations }) => {
   const { locationId, reviewId } = useParams();
   const [stars, setStars] = useState(0);
-  const [hoverStars, setHoverStars] = useState(0);
   const [comment, setComment] = useState("");
   const [review, setReview] = useState(null);
   const navigate = useNavigate();
@@ -46,23 +42,8 @@ export const EditReview = ({ currentUser, updateLocations }) => {
     });
   };
 
-  const renderInteractiveStars = () => {
-    const starsArray = [1, 2, 3, 4, 5];
-    return starsArray.map((num) => (
-      <span
-        key={num}
-        style={{
-          fontSize: "40px",
-          color: num <= (hoverStars || stars) ? "#ffd700" : "#d3d3d3",
-          cursor: "pointer",
-        }}
-        onClick={() => setStars(num)}
-        onMouseEnter={() => setHoverStars(num)}
-        onMouseLeave={() => setHoverStars(0)}
-      >
-        ★
-      </span>
-    ));
+  const handleStarClick = (rating) => {
+    setStars(rating);
   };
 
   if (!review) return <p>Loading...</p>;
@@ -70,8 +51,11 @@ export const EditReview = ({ currentUser, updateLocations }) => {
   return (
     <div className="card col-4 mx-auto mt-5 pt-5">
       <h2 className="text-center">Edit Review</h2>
+      
+
+      <form onSubmit={handleSubmit} className="text-center col-11 mx-auto mt-0 p-0">
       {currentUser && (
-        <div className="user-info text-center mb-0 d-flex justify-content-center align-items-center">
+        <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5">
           <img
             src={currentUser.imgUrl || "https://via.placeholder.com/40"}
             alt="User Avatar"
@@ -80,14 +64,12 @@ export const EditReview = ({ currentUser, updateLocations }) => {
           <h5 className="text-start">{currentUser.name}</h5>
         </div>
       )}
-
-      <form onSubmit={handleSubmit} className="text-center col-11 mx-auto mt-0 p-0">
-        <div className="d-flex justify-content-center align-items-center">
-          <div className="star-rating mb-3">{renderInteractiveStars()}</div>
+        <div className="d-flex justify-content-start align-items-center fs-2 mb-2">
+          <Stars stars={stars} onClick={handleStarClick} />
         </div>
         <div className="d-block mx-auto w-100">
           <textarea
-            className=" new-rating-text-area col-12 mx-0"
+            className="new-rating-text-area col-12 mx-0 ps-3 pt-2"
             id="comment"
             placeholder="Edit your review"
             value={comment}

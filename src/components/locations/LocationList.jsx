@@ -3,17 +3,28 @@ import { useNavigate } from "react-router-dom";
 import { getAllLocations } from "../../services/locationService.jsx";
 import "./Locations.css";
 import { LocationFilterBar } from "./LocationFilterBar.jsx";
+import { Stars } from "../shared/Stars.jsx";
 
 export const LocationList = () => {
   const [locations, setLocations] = useState([]);
+  const [filteredLocations, setFilteredLocations] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     getAllLocations().then((fetchedLocations) => {
       setLocations(fetchedLocations);
+      setFilteredLocations(fetchedLocations);
     });
   }, []);
+
+  useEffect(() => {
+    setFilteredLocations(
+      locations.filter((location) =>
+        location.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, locations]);
 
   const handleCardClick = (id) => {
     navigate(`/locations/${id}`);
@@ -21,32 +32,6 @@ export const LocationList = () => {
 
   const handleNewRatingClick = () => {
     navigate("/locations/new-rating");
-  };
-
-  const filteredLocations = locations.filter((location) => {
-    return location.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-
-  const calculateAverageRating = (ratings) => {
-    if (ratings.length === 0) return 0;
-    const totalStars = ratings.reduce(
-      (total, rating) => total + rating.stars,
-      0
-    );
-    const averageRating = totalStars / ratings.length;
-    return Math.ceil(averageRating);
-  };
-
-  const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(
-        <span key={i} className={i < rating ? "star filled" : "star empty"}>
-          ★
-        </span>
-      );
-    }
-    return stars;
   };
 
   return (
@@ -88,10 +73,11 @@ export const LocationList = () => {
                 {location.city}, {location.state}
               </p>
               <div className="ratings">
-                <p className="rating-stars">
-                  {renderStars(calculateAverageRating(location.ratings))}
-                </p>
-                <p>({location.ratings.length})</p>
+                <div className="rating-stars d-flex justify-content-center">
+                  <Stars ratings={location.ratings} />
+                  <p className="amount ms-2">({location.ratings.length})</p>
+                </div>
+                
               </div>
             </div>
           </div>

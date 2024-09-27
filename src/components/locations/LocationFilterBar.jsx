@@ -1,10 +1,19 @@
+import { useState } from "react";
+
 export const LocationFilterBar = ({ setSearchTerm }) => {
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setSearchInput(value);
+    setSearchTerm(value);
+  };
+
   return (
     <div className="filter-bar">
       <input
-        onChange={(event) => {
-          setSearchTerm(event.target.value);
-        }}
+        value={searchInput}
+        onChange={handleInputChange}
         type="text"
         placeholder="Search Locations"
         className="location-search"
