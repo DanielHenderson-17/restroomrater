@@ -94,18 +94,10 @@
     },
     {
       "userId": 2,
-      "stars": 5,
-      "comment": "testing 123",
-      "locationId": 5,
-      "date": "2024-09-27T15:32:50.878Z",
-      "id": 3
-    },
-    {
-      "userId": 2,
       "stars": 4,
       "comment": "4 stars",
       "locationId": 1,
-      "date": "2024-09-27T15:48:39.186Z",
+      "date": "2024-09-27T15:54:52.691Z",
       "id": 4
     },
     {
@@ -115,14 +107,6 @@
       "locationId": 8,
       "date": "2024-09-27T15:49:58.366Z",
       "id": 5
-    },
-    {
-      "userId": 2,
-      "stars": 2,
-      "comment": "2",
-      "locationId": 4,
-      "date": "2024-09-27T15:50:09.420Z",
-      "id": 6
     }
   ]
 }

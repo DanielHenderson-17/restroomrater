@@ -19,10 +19,10 @@ export const NavBar = () => {
 
       <ul className="navbar">
         <li className="navbar-item">
-          <Link className="navbar-link" to="/locations">All Ratings</Link>
+          <Link className="navbar-link" to="/locations">All Reviews</Link>
         </li>
         <li className="navbar-item">
-          <Link className="navbar-link" to="/my-ratings">My Ratings</Link>
+          <Link className="navbar-link" to="/my-ratings">My Reviews</Link>
         </li>
         {localStorage.getItem("rr_user") ? (
             <li className="navbar-item navbar-logout">

@@ -51,7 +51,7 @@ export const LocationList = () => {
 
   return (
     <div className="location-list">
-      <h1>All Locations & Ratings</h1>
+      <h1>All Locations & Reviews</h1>
       <div className="d-flex justify-content-center align-items-center">
         <div className="col-9">
           <LocationFilterBar setSearchTerm={setSearchTerm} />
