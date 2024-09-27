@@ -1,67 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
+import SelectUSState from "react-select-us-states";
 import { addLocationAndRating } from "../../services/locationService.jsx";
 import { Stars } from "../shared/Stars.jsx";
-
-const stateOptions = [
-  { value: "AL", label: "AL" },
-  { value: "AK", label: "AK" },
-  { value: "AZ", label: "AZ" },
-  { value: "AR", label: "AR" },
-  { value: "CA", label: "CA" },
-  { value: "CO", label: "CO" },
-  { value: "CT", label: "CT" },
-  { value: "DE", label: "DE" },
-  { value: "FL", label: "FL" },
-  { value: "GA", label: "GA" },
-  { value: "HI", label: "HI" },
-  { value: "ID", label: "ID" },
-  { value: "IL", label: "IL" },
-  { value: "IN", label: "IN" },
-  { value: "IA", label: "IA" },
-  { value: "KS", label: "KS" },
-  { value: "KY", label: "KY" },
-  { value: "LA", label: "LA" },
-  { value: "ME", label: "ME" },
-  { value: "MD", label: "MD" },
-  { value: "MA", label: "MA" },
-  { value: "MI", label: "MI" },
-  { value: "MN", label: "MN" },
-  { value: "MS", label: "MS" },
-  { value: "MO", label: "MO" },
-  { value: "MT", label: "MT" },
-  { value: "NE", label: "NE" },
-  { value: "NV", label: "NV" },
-  { value: "NH", label: "NH" },
-  { value: "NJ", label: "NJ" },
-  { value: "NM", label: "NM" },
-  { value: "NY", label: "NY" },
-  { value: "NC", label: "NC" },
-  { value: "ND", label: "ND" },
-  { value: "OH", label: "OH" },
-  { value: "OK", label: "OK" },
-  { value: "OR", label: "OR" },
-  { value: "PA", label: "PA" },
-  { value: "RI", label: "RI" },
-  { value: "SC", label: "SC" },
-  { value: "SD", label: "SD" },
-  { value: "TN", label: "TN" },
-  { value: "TX", label: "TX" },
-  { value: "UT", label: "UT" },
-  { value: "VT", label: "VT" },
-  { value: "VA", label: "VA" },
-  { value: "WA", label: "WA" },
-  { value: "WV", label: "WV" },
-  { value: "WI", label: "WI" },
-  { value: "WY", label: "WY" },
-];
 
 export const NewRating = ({ currentUser }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [state, setState] = useState(null);
+  const [state, setState] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [comment, setComment] = useState("");
   const [stars, setStars] = useState(0);
@@ -74,7 +21,7 @@ export const NewRating = ({ currentUser }) => {
       name,
       address,
       city,
-      state: state?.value,
+      state,
       imgUrl,
     };
 
@@ -126,12 +73,10 @@ export const NewRating = ({ currentUser }) => {
         />
 
         <div className="d-block mx-auto my-2 w-75">
-          <Select
-            options={stateOptions}
-            value={state}
+          <SelectUSState
+            className="select-state w-100"
             onChange={setState}
             placeholder="Select State"
-            isClearable
           />
         </div>
 
@@ -143,7 +88,7 @@ export const NewRating = ({ currentUser }) => {
           onChange={(e) => setImgUrl(e.target.value)}
         />
 
-        <div className="d-block mx-auto my-2 text-center">
+        <div className="d-block mx-auto my-2 text-center fs-1">
           <Stars stars={stars} onClick={handleStarClick} />
         </div>
 

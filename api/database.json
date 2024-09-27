@@ -15,6 +15,14 @@
       "totalRatings": 0,
       "averageRatings": 0,
       "id": 2
+    },
+    {
+      "email": "julieannwest10@gmail.com",
+      "name": "ZombieLynxGaming",
+      "imgUrl": "https://danielhenderson17.com/img/Portrait.png",
+      "totalRatings": 0,
+      "averageRatings": 0,
+      "id": 3
     }
   ],
   "locations": [
@@ -103,14 +111,6 @@
     {
       "userId": 2,
       "stars": 4,
-      "comment": "4 stars",
-      "locationId": 1,
-      "date": "2024-09-27T15:54:52.691Z",
-      "id": 4
-    },
-    {
-      "userId": 2,
-      "stars": 4,
       "comment": "test",
       "locationId": 4,
       "date": "2024-09-27T16:16:02.379Z",
@@ -123,6 +123,14 @@
       "locationId": 7,
       "date": "2024-09-27T16:24:57.137Z",
       "id": 8
+    },
+    {
+      "userId": 2,
+      "stars": 4,
+      "comment": "fun place",
+      "locationId": 1,
+      "date": "2024-09-27T22:15:37.892Z",
+      "id": 9
     }
   ]
 }

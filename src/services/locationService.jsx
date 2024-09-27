@@ -1,60 +1,48 @@
-export const getAllLocations = () => {
-  return fetch('http://localhost:8088/locations?_embed=ratings')
-    .then(res => res.json());
-};
+const baseUrl = 'http://localhost:8088';
 
-export const submitRating = (newReview) => {
-  return fetch(`http://localhost:8088/ratings`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newReview),
-  })
-  .then((response) => response.json())
-  .then(() => getAllLocations());
-};
-
-export const updateRating = (reviewId, updatedReview) => {
-  return fetch(`http://localhost:8088/ratings/${reviewId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updatedReview),
-  })
-  .then(() => getAllLocations());
-};
-
-export const deleteRating = (reviewId) => {
-  return fetch(`http://localhost:8088/ratings/${reviewId}`, {
-    method: "DELETE",
-  })
-  .then(() => getAllLocations());
-};
-
-export const getReviewById = (reviewId) => {
-  return fetch(`http://localhost:8088/ratings/${reviewId}`).then(res => res.json());
-};
-
-export const addLocationAndRating = (newLocation, newRating) => {
-  return fetch('http://localhost:8088/locations', {
-    method: 'POST',
+const apiFetch = (endpoint, method = 'GET', data = null) => {
+  return fetch(`${baseUrl}${endpoint}`, {
+    method,
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(newLocation),
-  })
-    .then((res) => res.json())
+    body: data ? JSON.stringify(data) : null,
+  }).then(res => {
+    if (!res.ok) {
+      throw new Error('Failed to fetch');
+    }
+    return res.json();
+  });
+};
+
+export const getAllLocations = () => {
+  return apiFetch('/locations?_embed=ratings');
+};
+
+export const submitRating = (newReview) => {
+  return apiFetch('/ratings', 'POST', newReview)
+    .then(() => getAllLocations());
+};
+
+export const updateRating = (reviewId, updatedReview) => {
+  return apiFetch(`/ratings/${reviewId}`, 'PUT', updatedReview)
+    .then(() => getAllLocations());
+};
+
+export const deleteRating = (reviewId) => {
+  return apiFetch(`/ratings/${reviewId}`, 'DELETE')
+    .then(() => getAllLocations());
+};
+
+export const getReviewById = (reviewId) => {
+  return apiFetch(`/ratings/${reviewId}`);
+};
+
+export const addLocationAndRating = (newLocation, newRating) => {
+  return apiFetch('/locations', 'POST', newLocation)
     .then((addedLocation) => {
       newRating.locationId = addedLocation.id;
-      return fetch('http://localhost:8088/ratings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newRating),
-      });
+      return apiFetch('/ratings', 'POST', newRating);
     })
     .then(() => getAllLocations());
 };

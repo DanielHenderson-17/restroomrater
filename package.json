@@ -13,7 +13,9 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
-    "react-select": "^5.8.1"
+    "react-select": "^5.8.1",
+    "react-select-us-states": "^0.1.2",
+    "us-state-codes": "^1.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
