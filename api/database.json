@@ -81,6 +81,14 @@
       "state": "AL",
       "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png",
       "id": 8
+    },
+    {
+      "name": "test",
+      "address": "test",
+      "city": "test",
+      "state": "AL",
+      "imgUrl": "none",
+      "id": 9
     }
   ],
   "ratings": [
@@ -102,11 +110,19 @@
     },
     {
       "userId": 2,
-      "stars": 5,
-      "comment": "12341656",
-      "locationId": 8,
-      "date": "2024-09-27T15:49:58.366Z",
-      "id": 5
+      "stars": 4,
+      "comment": "test",
+      "locationId": 4,
+      "date": "2024-09-27T16:16:02.379Z",
+      "id": 6
+    },
+    {
+      "userId": 2,
+      "stars": 4,
+      "comment": "My mamma",
+      "locationId": 7,
+      "date": "2024-09-27T16:24:57.137Z",
+      "id": 8
     }
   ]
 }

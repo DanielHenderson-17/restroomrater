@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
 
 export const MyRatings = ({ currentUser, locations }) => {
   const navigate = useNavigate();
@@ -13,18 +14,6 @@ export const MyRatings = ({ currentUser, locations }) => {
       setFilteredLocations(userLocations);
     }
   }, [locations, currentUser]);
-
-  const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(
-        <span key={i} className={i < rating ? "star filled" : "star empty"}>
-          ★
-        </span>
-      );
-    }
-    return stars;
-  };
 
   return (
     <div className="my-ratings mt-5 pt-5">
@@ -49,22 +38,23 @@ export const MyRatings = ({ currentUser, locations }) => {
           return (
             <div className="col-3 mb-4 mx-auto" key={location.id}>
               <div className="card h-100 w-100">
-                <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex justify-content-between align-items-center border-bottom">
                   <img
                     src={location.imgUrl || "https://via.placeholder.com/80"}
                     alt={location.name}
                     className="location-image col-12 h-100"
-                    style={{ width: "100px", height: "auto" }}
                   />
                   <div className="ms-3 col-5 text-center pt-3">
-                    <h5>{location.name}</h5>
+                    <div className="info-height"><h5>{location.name}</h5>
                     <p>
                       {location.city}, {location.state}
-                    </p>
+                    </p></div>
+                    
                     <div className="justify-content-center align-items-center d-flex">
-                      <p className="rating-stars mb-0 d-flex">
-                        {renderStars(userRating.stars)}
-                      </p>
+                      <div className="rating-stars mb-0 d-flex">
+                        {/* Use the Stars component */}
+                        <Stars stars={userRating.stars} />
+                      </div>
                       <p className="mb-0 mt-1 ms-2">
                         {new Date(userRating.date).toLocaleDateString()}
                       </p>
@@ -99,7 +89,7 @@ export const MyRatings = ({ currentUser, locations }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="mt-3 m-3 p-2 border rounded h-100">
+                <div className="mt-3 m-3 p-2 h-100">
                   <p>{userRating.comment}</p>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getAllLocations } from "../../services/locationService.jsx";
 import { getAllUsers } from "../../services/userService.jsx";
+import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
 import "./Locations.css";
 
 export const Location = ({ currentUser }) => {
@@ -27,31 +28,15 @@ export const Location = ({ currentUser }) => {
 
   const calculateAverageRating = (ratings) => {
     if (ratings.length === 0) return 0;
-    const totalStars = ratings.reduce(
-      (total, rating) => total + rating.stars,
-      0
-    );
-    const averageRating = totalStars / ratings.length;
-    return Math.ceil(averageRating);
-  };
-
-  const renderStars = (rating) => {
-    const stars = [];
-    for (let i = 0; i < 5; i++) {
-      stars.push(
-        <span key={i} className={i < rating ? "star filled" : "star empty"}>
-          ★
-        </span>
-      );
-    }
-    return stars;
+    const totalStars = ratings.reduce((total, rating) => total + rating.stars, 0);
+    return Math.ceil(totalStars / ratings.length);
   };
 
   const handleEditClick = (reviewId) => {
     navigate(`/locations/${locationId}/edit/${reviewId}`);
   };
 
-if (!location || users.length === 0) return <p>Loading...</p>;
+  if (!location || users.length === 0) return <p>Loading...</p>;
 
   return (
     <div className="location-details">
@@ -59,7 +44,7 @@ if (!location || users.length === 0) return <p>Loading...</p>;
         <img
           src={location.imgUrl || "https://via.placeholder.com/80"}
           alt={location.name}
-          className="location-image"
+          className="location-image2"
         />
         <div className="location-details2">
           <h2>{location.name}</h2>
@@ -69,7 +54,7 @@ if (!location || users.length === 0) return <p>Loading...</p>;
           </p>
           <div className="d-flex justify-content-center align-items-center">
             <p className="rating-stars mx-2">
-              {renderStars(calculateAverageRating(location.ratings))}
+              <Stars stars={calculateAverageRating(location.ratings)} />
             </p>
             <p className="pt-1">({location.ratings.length})</p>
           </div>
@@ -100,11 +85,11 @@ if (!location || users.length === 0) return <p>Loading...</p>;
                 />
                 <strong>{user ? user.name : "Unknown User"}</strong>
               </div>
-              <div className="review-rating-date">
-                <span className="rating-stars">
-                  {renderStars(review.stars)}
+              <div className="review-rating-date d-flex justify-content-start mb-2">
+                <span className="rating-stars fs-5">
+                  <Stars stars={review.stars} />
                 </span>
-                <span className="review-date">
+                <span className="review-date align-self-center">
                   {new Date(review.date).toLocaleDateString()}
                 </span>
               </div>
@@ -113,7 +98,7 @@ if (!location || users.length === 0) return <p>Loading...</p>;
                 <div className="d-flex justify-content-end">
                   <div className="dropdown">
                     <div
-                      className=" dropdown-toggle"
+                      className="dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton"
                       data-bs-toggle="dropdown"
@@ -129,8 +114,6 @@ if (!location || users.length === 0) return <p>Loading...</p>;
                         >
                           Edit
                         </button>
-                      </li>
-                      <li>
                       </li>
                     </ul>
                   </div>

@@ -1,0 +1,32 @@
+/* Core Star Component Styles */
+.star {
+    color: #d3d3d3;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px rgb(117, 117, 117);
+  }
+  
+  .star.filled {
+    color: #f3b807; /* Yellow color for filled stars */
+  }
+  
+  .star.empty {
+    color: #d3d6da;
+  }
+  
+  .star:hover {
+    color: #ffc107; /* Change color on hover */
+  }
+  
+  .rating-stars {
+    font-size: 18px;
+    color: #ffd700;
+    margin-right: 10px;
+  }
+  
+  .star-rating2 {
+    display: flex;
+    gap: 5px;
+    font-size: 60px;
+    cursor: pointer;
+  }
+  
