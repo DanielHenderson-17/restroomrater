@@ -108,7 +108,7 @@ export const NewRating = ({ currentUser }) => {
   return (
     <div className="">
       <form onSubmit={handleSubmit} className="border card col-6 mx-auto">
-        <h2 className="text-center my-3">New Rating</h2>
+        <h2 className="text-center my-3">New Review</h2>
         <input
           className="d-block mx-auto my-2 w-75"
           type="text"
