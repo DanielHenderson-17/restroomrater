@@ -1,30 +1,20 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Daniel Henderson",
-      "email": "djhindu17@gmail.com",
-      "imgUrl": "https://danielhenderson17.com/img/Portrait.png"
-    },
-    {
-      "email": "djhindu17@aol.com",
-      "name": "Daniel Henderson",
-      "imgUrl": "https://danielhenderson17.com/img/Portrait.png",
-      "id": 2
-    },
-    {
-      "email": "zombielynxgaming@gmail.com",
-      "name": "ZombieLynxGaming",
-      "imgUrl": "https://zlg.gg/assets/images/normallynx.png",
-      "id": 3
-    },
-    {
       "email": "gunnar@gunnar.com",
       "name": "ZombieLynxGaming",
       "imgUrl": "https://zlg.gg/assets/images/normallynx.png",
       "totalRatings": 0,
       "averageRatings": 0,
-      "id": 4
+      "id": 1
+    },
+    {
+      "email": "djhindu17@gmail.com",
+      "name": "Daniel Henderson",
+      "imgUrl": "https://danielhenderson17.com/img/Portrait.png",
+      "totalRatings": 0,
+      "averageRatings": 0,
+      "id": 2
     }
   ],
   "locations": [
@@ -75,6 +65,22 @@
       "city": "Murfreesboro",
       "state": "TN",
       "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
+    },
+    {
+      "name": "Shell",
+      "address": "Old Fort Pkwy",
+      "city": "MURFREESBORO",
+      "state": "Tennessee",
+      "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png",
+      "id": 7
+    },
+    {
+      "name": "Exxon",
+      "address": "123 Cherry Street",
+      "city": "Boeing",
+      "state": "AL",
+      "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png",
+      "id": 8
     }
   ],
   "ratings": [
@@ -83,80 +89,40 @@
       "stars": 3,
       "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness. A little extra effort could go a long way here.",
       "date": "2024-09-17T14:30:00",
-      "userId": 2,
+      "userId": 1,
       "locationId": 2
     },
     {
-      "id": 3,
+      "userId": 2,
       "stars": 5,
-      "comment": "Very clean and accessible! I have nothing but good to say about these. Everything was spotless, and the restroom was easy to access, which made the whole experience stress-free. Definitely one of the better places I’ve visited.",
-      "date": "2024-09-16T11:45:00",
-      "userId": 3,
-      "locationId": 3
+      "comment": "testing 123",
+      "locationId": 5,
+      "date": "2024-09-27T15:32:50.878Z",
+      "id": 3
     },
     {
-      "id": 4,
-      "stars": 2,
-      "comment": "Dirty and smelly. The entire restroom seemed like it hadn’t been cleaned in a while, and the odor was really off-putting. It's disappointing because a clean restroom is such a basic necessity, and this one failed to meet even that standard.",
-      "date": "2024-09-15T16:00:00",
-      "userId": 3,
-      "locationId": 4
-    },
-    {
-      "id": 5,
-      "stars": 1,
-      "comment": "Terrible experience, very unhygienic. It felt like no one had taken care of this place in ages. The floors were dirty, there was a bad smell, and it was an overall unpleasant experience. I would avoid coming back here.",
-      "date": "2024-09-14T09:30:00",
       "userId": 2,
-      "locationId": 5
+      "stars": 4,
+      "comment": "4 stars",
+      "locationId": 1,
+      "date": "2024-09-27T15:48:39.186Z",
+      "id": 4
     },
     {
-      "id": 6,
-      "stars": 2,
-      "comment": "It was nasty! I could barely stand being in there, and the overall cleanliness was just not acceptable. This place really needs a deep clean before I would consider using it again.",
-      "date": "2024-09-18T12:00:00",
       "userId": 2,
-      "locationId": 1
+      "stars": 5,
+      "comment": "12341656",
+      "locationId": 8,
+      "date": "2024-09-27T15:49:58.366Z",
+      "id": 5
     },
     {
-      "id": 7,
-      "stars": 2,
-      "comment": "It was nasty! Just like the other place I visited, the condition of this restroom was really poor. There seems to be a pattern here with inadequate cleaning standards. Not a good experience at all.",
-      "date": "2024-09-18T12:00:00",
       "userId": 2,
-      "locationId": 6
-    },
-    {
-      "userId": 3,
-      "stars": 4,
-      "comment": "Man it was a blast!",
-      "locationId": 1,
-      "date": "2024-09-26T01:13:21.390Z",
-      "id": 8
-    },
-    {
-      "userId": 1,
-      "stars": 4,
-      "comment": "i needed to test again\n",
-      "locationId": 2,
-      "date": "2024-09-26T01:14:43.445Z",
-      "id": 9
-    },
-    {
-      "userId": 1,
-      "stars": 4,
-      "comment": "I'm showing nj some stuffs test",
-      "locationId": 1,
-      "date": "2024-09-26T14:56:26.566Z",
-      "id": 11
-    },
-    {
-      "userId": 4,
-      "stars": 0,
-      "comment": "",
-      "locationId": 1,
-      "date": "2024-09-26T18:55:37.257Z",
-      "id": 12
+      "stars": 2,
+      "comment": "2",
+      "locationId": 4,
+      "date": "2024-09-27T15:50:09.420Z",
+      "id": 6
     }
   ]
 }

@@ -34,18 +34,17 @@ export const Login = () => {
   }
 
   return (
-    <main className="container-login">
-      <section>
-        <form className="form-login" onSubmit={handleLogin}>
-          <h1>Restroom Ratings</h1>
-          <h2>Please sign in</h2>
+    <main className="container-login mt-5 pt-5">
+      <section className="row mt-5">
+        <form className="form-login card w-25" onSubmit={handleLogin}>
+          <h2 className="mt-5">Please sign in</h2>
           <fieldset>
-            <div className="form-group">
+            <div className="form-group p-5">
               <input
                 type="email"
                 value={email}
                 onChange={(evt) => set(evt.target.value)}
-                className="form-control"
+                className="form-control border"
                 placeholder="Email address"
                 required
                 autoFocus
@@ -54,7 +53,7 @@ export const Login = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
-              <button className="login-btn btn-info" type="submit">
+              <button className="login-btn btn btn-info" type="submit">
                 Sign in
               </button>
             </div>

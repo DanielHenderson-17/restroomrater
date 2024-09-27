@@ -1,27 +1,34 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  getAllLocations,
-  submitRating,
-} from "../../services/locationService.jsx";
+import { submitRating } from "../../services/locationService.jsx";
 import "./RateLocation.css";
 
-export const RateLocation = ({ currentUser }) => {
+export const RateLocation = ({ currentUser, locations, updateLocations }) => {
   const { locationId } = useParams();
   const [location, setLocation] = useState(null);
   const [stars, setStars] = useState(0);
   const [hoverStars, setHoverStars] = useState(0);
   const [comment, setComment] = useState("");
+  const [hasAlerted, setHasAlerted] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllLocations().then((fetchedLocations) => {
-      const selectedLocation = fetchedLocations.find(
-        (loc) => loc.id === parseInt(locationId)
-      );
+    const selectedLocation = locations.find((loc) => loc.id === parseInt(locationId));
+    if (selectedLocation) {
       setLocation(selectedLocation);
-    });
-  }, [locationId]);
+
+    
+      const existingReview = selectedLocation.ratings.find(
+        (review) => review.userId === currentUser.id
+      );
+
+      if (existingReview && !hasAlerted) {
+        setHasAlerted(true);
+        alert("You have already made a review for this location.");
+        navigate(`/locations/${locationId}`);
+      }
+    }
+  }, [locationId, locations, currentUser, navigate, hasAlerted]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,21 +46,10 @@ export const RateLocation = ({ currentUser }) => {
       date: new Date().toISOString(),
     };
 
-    submitRating(newReview).then(() => {
+    submitRating(newReview).then((updatedLocations) => {
+      updateLocations(updatedLocations);
       navigate(`/locations/${locationId}`);
     });
-  };
-
-  const renderAverageStars = (averageRating) => {
-    const starsArray = [1, 2, 3, 4, 5];
-    return starsArray.map((num) => (
-      <span
-        key={num}
-        className={num <= averageRating ? "star filled" : "star empty"}
-      >
-        ★
-      </span>
-    ));
   };
 
   const renderInteractiveStars = () => {
@@ -94,25 +90,24 @@ export const RateLocation = ({ currentUser }) => {
           </p>
           <div className="d-flex justify-content-center align-items-center">
             <p className="rating-stars mx-2">
-              {renderAverageStars(calculateAverageRating(location.ratings))}
             </p>
             <p className="pt-1">({location.ratings.length})</p>
           </div>
         </div>
       </div>
+
       <div className="mx-auto mt-5 card review-card">
         {currentUser && (
-          <div className="d-flex justify-content-center text-center"></div>
-        )}
-        <form onSubmit={handleSubmit} className="text-center mt-0 pt-0 mb-0">
           <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5 text-left w-100">
             <img
               src={currentUser.imgUrl || "https://via.placeholder.com/40"}
-              alt=""
+              alt="User avatar"
               className="user-avatar"
             />
             <h4 className="text-start ms-2">{currentUser.name}</h4>
           </div>
+        )}
+        <form onSubmit={handleSubmit} className="text-center mt-0 pt-0 mb-0">
           <div className="d-flex justify-content-center align-items-center">
             <div className="star-rating mb-3">{renderInteractiveStars()}</div>
           </div>
@@ -129,7 +124,7 @@ export const RateLocation = ({ currentUser }) => {
             <button
               type="button"
               className="btn btn-secondary my-2 me-3 text-end"
-              onClick={() => navigate(`/locations/${locationId}`)}  // Navigate back to the location page
+              onClick={() => navigate(`/locations/${locationId}`)}
             >
               Cancel
             </button>
@@ -141,10 +136,4 @@ export const RateLocation = ({ currentUser }) => {
       </div>
     </div>
   );
-};
-
-const calculateAverageRating = (ratings) => {
-  if (ratings.length === 0) return 0;
-  const totalStars = ratings.reduce((total, rating) => total + rating.stars, 0);
-  return Math.ceil(totalStars / ratings.length);
 };

@@ -51,11 +51,7 @@ export const Location = ({ currentUser }) => {
     navigate(`/locations/${locationId}/edit/${reviewId}`);
   };
 
-  // const handleDeleteClick = (reviewId) => {
-  //   // Add delete logic here
-  // };
-
-  if (!location || users.length === 0) return <p>Loading...</p>;
+if (!location || users.length === 0) return <p>Loading...</p>;
 
   return (
     <div className="location-details">
@@ -113,20 +109,18 @@ export const Location = ({ currentUser }) => {
                 </span>
               </div>
               <p className="review-comment">{review.comment}</p>
-
-              {/* Show the dropdown menu only if the review belongs to the current user */}
               {isCurrentUser && (
                 <div className="d-flex justify-content-end">
                   <div className="dropdown">
-                    <button
-                      className="btn btn-link dropdown-toggle"
+                    <div
+                      className=" dropdown-toggle"
                       type="button"
                       id="dropdownMenuButton"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
                       <i className="bi bi-three-dots"></i>
-                    </button>
+                    </div>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <li>
                         <button
@@ -137,12 +131,6 @@ export const Location = ({ currentUser }) => {
                         </button>
                       </li>
                       <li>
-                        {/* <button
-                          className="dropdown-item"
-                          onClick={() => handleDeleteClick(review.id)}
-                        >
-                          Delete
-                        </button> */}
                       </li>
                     </ul>
                   </div>

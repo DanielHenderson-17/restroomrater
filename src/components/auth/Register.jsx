@@ -53,17 +53,16 @@ export const Register = (props) => {
   };
 
   return (
-    <main style={{ textAlign: "center" }}>
-      <form className="form-login" onSubmit={handleRegister}>
-        <h1>Restroom Ratings</h1>
-        <h2>Please Register</h2>
+    <main className="mt-5 pt-5" style={{ textAlign: "center" }}>
+      <form className="form-login card w-25" onSubmit={handleRegister}>
+        <h2 className="my-5">Please Register</h2>
         <fieldset>
           <div className="form-group">
             <input
               onChange={updateCustomer}
               type="text"
               id="name"
-              className="form-control"
+              className="form-control border"
               placeholder="Name"
               required
               autoFocus
@@ -76,7 +75,7 @@ export const Register = (props) => {
               onChange={updateCustomer}
               type="email"
               id="email"
-              className="form-control"
+              className="form-control border"
               placeholder="Email address"
               required
             />
@@ -88,7 +87,7 @@ export const Register = (props) => {
               onChange={updateCustomer}
               type="text"
               id="imgUrl"
-              className="form-control"
+              className="form-control  border"
               placeholder="Avatar URL"
               required
               autoFocus
@@ -97,7 +96,7 @@ export const Register = (props) => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <button className="login-btn btn-info" type="submit">
+            <button className="login-btn btn btn-info" type="submit">
               Register
             </button>
           </div>

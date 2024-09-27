@@ -8,7 +8,7 @@ export const NavBar = () => {
   return (
     <nav>
       <li className="navbar-item">
-        <Link to="/">
+        <Link className="navbar-link" to="/">
           <img
             className="navbar-image"
             src="https://i.imgur.com/Mpo9h6p.png"
@@ -19,13 +19,10 @@ export const NavBar = () => {
 
       <ul className="navbar">
         <li className="navbar-item">
-          <Link to="/locations">All Rates</Link>
+          <Link className="navbar-link" to="/locations">All Ratings</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/my-ratings">My Ratings</Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/patrons">Patrons</Link>
+          <Link className="navbar-link" to="/my-ratings">My Ratings</Link>
         </li>
         {localStorage.getItem("rr_user") ? (
             <li className="navbar-item navbar-logout">

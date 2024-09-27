@@ -53,13 +53,15 @@ export const LocationList = () => {
     <div className="location-list">
       <h1>All Locations & Ratings</h1>
       <div className="d-flex justify-content-center align-items-center">
-        <div className="col-9"><LocationFilterBar setSearchTerm={setSearchTerm} /></div>
-        
+        <div className="col-9">
+          <LocationFilterBar setSearchTerm={setSearchTerm} />
+        </div>
+
         <button
           className="btn btn-primary my-3 p-1 col-2"
           onClick={handleNewRatingClick}
         >
-          New Rating
+          New
         </button>
       </div>
 

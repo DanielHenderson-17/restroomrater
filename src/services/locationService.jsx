@@ -1,7 +1,7 @@
 export const getAllLocations = () => {
-    return fetch('http://localhost:8088/locations?_embed=ratings')
-      .then(res => res.json());
-  };
+  return fetch('http://localhost:8088/locations?_embed=ratings')
+    .then(res => res.json());
+};
 
 export const submitRating = (newReview) => {
   return fetch(`http://localhost:8088/ratings`, {
@@ -10,7 +10,9 @@ export const submitRating = (newReview) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(newReview),
-  }).then((response) => response.json());
+  })
+  .then((response) => response.json())
+  .then(() => getAllLocations());
 };
 
 export const updateRating = (reviewId, updatedReview) => {
@@ -20,13 +22,15 @@ export const updateRating = (reviewId, updatedReview) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(updatedReview),
-  });
+  })
+  .then(() => getAllLocations());
 };
 
 export const deleteRating = (reviewId) => {
   return fetch(`http://localhost:8088/ratings/${reviewId}`, {
     method: "DELETE",
-  });
+  })
+  .then(() => getAllLocations());
 };
 
 export const getReviewById = (reviewId) => {
@@ -43,7 +47,7 @@ export const addLocationAndRating = (newLocation, newRating) => {
   })
     .then((res) => res.json())
     .then((addedLocation) => {
-      newRating.locationId = addedLocation.id; // Link rating to the new location
+      newRating.locationId = addedLocation.id;
       return fetch('http://localhost:8088/ratings', {
         method: 'POST',
         headers: {
@@ -51,5 +55,6 @@ export const addLocationAndRating = (newLocation, newRating) => {
         },
         body: JSON.stringify(newRating),
       });
-    });
+    })
+    .then(() => getAllLocations());
 };

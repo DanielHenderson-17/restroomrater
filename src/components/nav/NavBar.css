@@ -29,3 +29,8 @@ nav {
  ::marker {
     color: whitesmoke;
   }
+
+  .navbar-link {
+    font-weight: bolder;
+    color: rgb(111, 10, 124);
+  }
