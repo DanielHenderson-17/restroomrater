@@ -1,133 +1,29 @@
-h1 {
-  text-align: center;
-}
-
-.filter-bar {
-  text-align: center;
-  width: 100%;
-}
-
-.filter-bar input {
-  width: 92%;
-  border-radius: 5px;
-}
-
 .location-list {
-  margin: 0 auto;
-  padding: 20px;
-  width: 50%;
+  height: 100vh!important;
+  background-color: white!important;
+  margin-left: 5%;
 }
 
-.location-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.location-list::-webkit-scrollbar {
+  display: none; 
 }
 
-.location-card {
-  height: 150px;
-  width: 400px;
-  background-color: #ffffff;
-  margin: 0 auto;
-  margin-top: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.location-card:hover {
-  cursor: pointer;
-}
-
-.location-image {
-  width: 200px;
-  height: 150px;
-  border-radius: 0;
-}
-
-.location-image2 {
-  height: 100%;
-  width: 50%;
-}
-
-.location-details,
-.location-details2 {
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.location-details,
-.location-list {
-  background-color: #f2f4f7;
-}
-
-.location-details h2 {
-  margin: 5px 0;
-  font-size: 18px;
-}
-
-.location-details p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-p {
-  margin: 0 !important;
-}
-
-/* Review card section */
-.review-card {
-  background-color: white;
-  margin: 0 auto;
-  width: 30%;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 15px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Review header: User image, name, date, and stars */
-.review-header {
-  display: flex;
-  align-items: center;
+.location-item {
   margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.review-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+
+
+.location-img {
+  width: 100%;
 }
 
-.review-header strong {
-  font-size: 16px;
-  color: #333;
+.rounded-pill {
+  outline: 1px solid #d6dadb!important;
 }
 
-.review-comment {
-  font-size: 16px;
-  color: #555;
-  margin-top: 10px;
-  text-align: left;
-}
-
-.btn {
-  border: 1px solid rgb(0, 84, 133);
-  background-color: rgb(39, 168, 211);
-  color: rgb(255, 255, 255);
-}
-
-.dropdown-toggle::after {
-  display: none !important;
-}
-
-.new-rating-text-area {
-  height: 100px;
+.location-cards  {
+  background-color: white;
 }

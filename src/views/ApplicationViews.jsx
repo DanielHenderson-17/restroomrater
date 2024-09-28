@@ -1,18 +1,17 @@
-import { Route, Routes, Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { useNavigate, Routes, Route } from 'react-router-dom';
+import { NavBar } from '../components/nav/NavBar.jsx';
+import { SideBar } from '../components/nav/SideBar.jsx';
+import { LocationList } from '../components/locations/LocationList';
+import { MyReviews } from '../components/reviews/MyReviews';
 import { getAllLocations } from "../services/locationService.jsx";
-import { LocationList } from "../components/locations/LocationList.jsx";
-import { Location } from "../components/locations/Location.jsx";
-import { NavBar } from "../components/nav/NavBar.jsx";
-import { Welcome } from "../components/welcome/Welcome.jsx";
-import { RateLocation } from "../components/reviews/RateLocation.jsx";
-import { EditReview } from "../components/reviews/EditReview.jsx";
-import { NewRating } from "../components/reviews/NewRating.jsx";
-import { MyRatings } from "../components/reviews/MyRatings.jsx";
+import "./main.css";
 
 export const ApplicationViews = () => {
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // New state for search term
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("rr_user"));
@@ -27,50 +26,43 @@ export const ApplicationViews = () => {
     });
   }, []);
 
-  const updateLocations = (updatedLocations) => {
-    setLocations(updatedLocations);
+  // Handle search click to navigate to /locations
+  const handleSearchClick = () => {
+    navigate('/locations');
+  };
+
+  // Handle My Reviews click to navigate to /my-reviews
+  const handleMyReviewsClick = () => {
+    navigate('/my-reviews');
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <NavBar />
-            <Outlet />
-          </>
-        }
-      >
-        <Route index element={<Welcome />} />
-        <Route path="/locations" element={<LocationList locations={locations} />} />
-        <Route
-          path="/locations/:locationId"
-          element={<Location currentUser={currentUser} locations={locations} />}
-        />
-        <Route
-          path="/locations/:locationId/rate"
-          element={
-            <RateLocation
-              currentUser={currentUser}
-              locations={locations}
-              updateLocations={updateLocations}
-            />
-          }
-        />
-        <Route
-          path="/locations/:locationId/edit/:reviewId"
-          element={<EditReview currentUser={currentUser} locations={locations} updateLocations={updateLocations} />}
-        />
-        <Route
-          path="/locations/new-rating"
-          element={<NewRating currentUser={currentUser} updateLocations={updateLocations} />}
-        />
-        <Route
-          path="/my-ratings"
-          element={<MyRatings currentUser={currentUser} locations={locations} />}
-        />
-      </Route>
-    </Routes>
+    <div className="main-container d-flex h-100">
+      {/* Pass the search term and handlers as props to NavBar */}
+      <NavBar 
+        onSearchClick={handleSearchClick} 
+        onMyReviewsClick={handleMyReviewsClick} 
+        setSearchTerm={setSearchTerm} 
+      />
+
+      {/* Static SideBar */}
+      <SideBar />
+
+      {/* Dynamic Content Area using Routes */}
+      <div className="content-container d-flex ms-5">
+        <Routes>
+          <Route 
+            path="/locations" 
+            element={<LocationList locations={locations} searchTerm={searchTerm} />} 
+          />
+          <Route 
+            path="/my-reviews" 
+            element={<MyReviews currentUser={currentUser} locations={locations} />} 
+          />
+        </Routes>
+      </div>
+    </div>
   );
 };
+
+export default ApplicationViews;

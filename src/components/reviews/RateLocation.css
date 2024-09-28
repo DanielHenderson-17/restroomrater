@@ -14,7 +14,6 @@ form {
 }
 
 .review-card {
-  width: 35%;
   background-color: #ffffff;
 }
 
@@ -27,6 +26,15 @@ form {
   height: 100%!important;
 }
 
-.amount {
+.amount, .date {
   color: black;
+}
+
+.my-ratings {
+  background-color: white;
+  margin-left: 5%;
+}
+
+.dropdown-toggle::after {
+  display: none;
 }

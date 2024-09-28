@@ -1,0 +1,13 @@
+.sidebar {
+    width: 5%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100vh;
+    background-color: #f7f7f700;
+}
+
+.sidebar-content {
+    flex: 1;
+    background-color: transparent!important;
+}

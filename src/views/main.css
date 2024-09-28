@@ -1,0 +1,20 @@
+.main-container {
+    background-color: rgb(33, 134, 2)!important;
+    height: 100vh!important;
+    overflow-y: hidden;
+}
+
+.content-container {
+    overflow-y: scroll;
+    width: 28%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* For all other browsers (to maintain scrolling functionality) */
+  element {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }

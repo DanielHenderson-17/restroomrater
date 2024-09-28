@@ -29,4 +29,8 @@
     font-size: 60px;
     cursor: pointer;
   }
+
+  .amount {
+    color: rgb(70, 70, 70);
+  }
   

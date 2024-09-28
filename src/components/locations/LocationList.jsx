@@ -1,22 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllLocations } from "../../services/locationService.jsx";
 import "./Locations.css";
-import { LocationFilterBar } from "./LocationFilterBar.jsx";
 import { Stars } from "../shared/Stars.jsx";
 
-export const LocationList = () => {
-  const [locations, setLocations] = useState([]);
+export const LocationList = ({ locations, searchTerm }) => {
   const [filteredLocations, setFilteredLocations] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    getAllLocations().then((fetchedLocations) => {
-      setLocations(fetchedLocations);
-      setFilteredLocations(fetchedLocations);
-    });
-  }, []);
 
   useEffect(() => {
     setFilteredLocations(
@@ -30,59 +19,51 @@ export const LocationList = () => {
     navigate(`/locations/${id}`);
   };
 
-  const handleNewRatingClick = () => {
-    navigate("/locations/new-rating");
+  // Helper function to calculate the average rating for a location
+  const calculateAverageRating = (ratings) => {
+    if (ratings.length === 0) return 0;
+    const total = ratings.reduce((sum, rating) => sum + rating.stars, 0);
+    return (total / ratings.length).toFixed(1); // Rounded to one decimal place
   };
 
   return (
-    <div className="location-list">
-      <h1>All Locations & Reviews</h1>
-      <div className="d-flex justify-content-center align-items-center">
-        <div className="col-9">
-          <LocationFilterBar setSearchTerm={setSearchTerm} />
-        </div>
-
-        <button
-          className="btn btn-primary my-3 p-1 col-2"
-          onClick={handleNewRatingClick}
-        >
-          New
-        </button>
-      </div>
+    <div className="location-list pt-5 w-100">
+      <h1 className="text-center mt-5 mb-3">All Locations</h1>
 
       <div className="location-cards">
-        {filteredLocations.map((location) => (
-          <div
-            key={location.id}
-            className="location-card"
-            onClick={() => handleCardClick(location.id)}
-          >
-            <img
-              src={
-                location.imgUrl
-                  ? location.imgUrl
-                  : "https://via.placeholder.com/80"
-              }
-              alt={`${location.name}`}
-              className="location-image"
-            />
-            <div className="location-details2">
-              <h5>{location.name}</h5>
-              <p>{location.address}</p>
-              <p>
-                {location.city}, {location.state}
-              </p>
-              <div className="ratings">
-                <div className="rating-stars d-flex justify-content-center">
+        {filteredLocations.map((location) => {
+          const averageRating = calculateAverageRating(location.ratings);
+
+          return (
+            <div
+              key={location.id}
+              className="location-card h-100"
+              onClick={() => handleCardClick(location.id)}
+            >
+              <img
+                src={location.imgUrl || "https://via.placeholder.com/80"}
+                alt={location.name}
+                className="location-image w-100"
+              />
+              <div className="text-start ms-5 mt-2">
+                <h5 className="mb-0">{location.name}</h5>
+                <div className="rating-stars d-flex justify-content-start">
+                  {/* Display the average rating */}
+                  <p className="average-rating me-1 amount my-0">{averageRating}</p>
                   <Stars ratings={location.ratings} />
-                  <p className="amount ms-2">({location.ratings.length})</p>
+                  <p className="amount ms-2 my-0">({location.ratings.length})</p>
                 </div>
-                
+                <p>{location.address}, {location.city}, {location.state}</p>
+                <p>
+                  
+                </p>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 };
+
+export default LocationList;

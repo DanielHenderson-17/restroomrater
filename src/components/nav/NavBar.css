@@ -1,36 +1,32 @@
-nav {
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .navbar-image {
-    height: 30px;
-  }
-  
-  .navbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  .navbar li {
-    margin-left: 20px;
-  }
-  
-  .navbar li a {
-    text-decoration: none;
-    padding: 10px;
-  }
-  
- ::marker {
-    color: whitesmoke;
-  }
+.navbar-nav .nav-item .btn {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #ffffff;
+}
 
-  .navbar-link {
-    font-weight: bolder;
-    color: rgb(111, 10, 124);
-  }
+.logout-btn {
+  background-color: #ffffff;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.5); 
+}
+
+.navbar {
+  border: none;
+  background-color: rgba(255, 255, 255, 0)!important;;
+  box-shadow: none !important; 
+  margin-left: 5%; 
+  z-index: 1000; 
+  height: 60px; 
+  width: 95%; 
+}
+
+.rounded-pill  {
+  background-color: #ffffff!important;
+}
+
+.filter-bar {
+  height: 50px!important;
+  padding-left: 15px;
+}
