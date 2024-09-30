@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { submitRating } from "../../services/locationService.jsx";
 import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
-import "./RateLocation.css";
+import "./ReviewLocation.css";
 
-export const RateLocation = ({ currentUser, locations, updateLocations }) => {
+export const ReviewLocation = ({ currentUser, locations, updateLocations }) => {
   const { locationId } = useParams();
   const [location, setLocation] = useState(null);
   const [stars, setStars] = useState(0);
