@@ -1,33 +1,25 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import { submitRating } from "../../services/locationService.jsx";
 import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
 import "./ReviewLocation.css";
 
-export const ReviewLocation = ({ currentUser, locations, updateLocations }) => {
-  const { locationId } = useParams();
-  const [location, setLocation] = useState(null);
+export const ReviewLocation = ({ currentUser, location, updateLocations, onClose }) => {
   const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
-  const [hasAlerted, setHasAlerted] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const selectedLocation = locations.find((loc) => loc.id === parseInt(locationId));
-    if (selectedLocation) {
-      setLocation(selectedLocation);
+    if (!location) return;
 
-      const existingReview = selectedLocation.ratings.find(
-        (review) => review.userId === currentUser.id
-      );
+    // Check if the user has already reviewed this location
+    const existingReview = location.ratings.find(
+      (review) => review.userId === currentUser.id
+    );
 
-      if (existingReview && !hasAlerted) {
-        setHasAlerted(true);
-        alert("You have already made a review for this location.");
-        navigate(`/locations/${locationId}`);
-      }
+    if (existingReview) {
+      alert("You have already made a review for this location.");
+      onClose(); // Close the modal if the user already reviewed
     }
-  }, [locationId, locations, currentUser, navigate, hasAlerted]);
+  }, [location, currentUser, onClose]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,13 +33,13 @@ export const ReviewLocation = ({ currentUser, locations, updateLocations }) => {
       userId: currentUser.id,
       stars: stars,
       comment: comment,
-      locationId: parseInt(locationId),
+      locationId: location.id, // Set locationId from the passed location prop
       date: new Date().toISOString(),
     };
 
     submitRating(newReview).then((updatedLocations) => {
-      updateLocations(updatedLocations);
-      navigate(`/locations/${locationId}`);
+      updateLocations(updatedLocations); // Update locations after submission
+      onClose(); // Close the modal after submission
     });
   };
 
@@ -57,24 +49,15 @@ export const ReviewLocation = ({ currentUser, locations, updateLocations }) => {
 
   return location ? (
     <div>
-      <div className="location-card mb-3 mx-auto col-8 shadow-sm p-3 mb-5 bg-white rounded">
-        <img
-          src={location.imgUrl ? location.imgUrl : "https://via.placeholder.com/80"}
-          alt={location.name}
-          className="location-image"
-        />
-        <div className="location-details2">
+      {/* Location details */}
+      <div className="mb-3 mx-auto col-8 p-3 mb-5 bg-white">
+        <div className="text-center">
           <h5>{location.name}</h5>
-          <p>{location.address}</p>
-          <p>{location.city}, {location.state}</p>
-          <div className="d-flex justify-content-center align-items-center">
-            <Stars ratings={location.ratings} /> {/* Reuse Stars component for display */}
-            <p className="pt-1">({location.ratings.length})</p>
-          </div>
         </div>
       </div>
 
-      <div className="mx-auto mt-5 card review-card">
+      {/* Review form */}
+      <div className="mx-auto mt-5">
         {currentUser && (
           <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5 text-left w-100">
             <img
@@ -85,9 +68,9 @@ export const ReviewLocation = ({ currentUser, locations, updateLocations }) => {
             <h4 className="text-start ms-2">{currentUser.name}</h4>
           </div>
         )}
-        <form onSubmit={handleSubmit} className="text-center mt-0 pt-0 mb-0">
-          <div className="d-flex justify-content-center align-items-center fs-1">
-            <Stars stars={stars} onClick={handleStarClick} />
+        <form onSubmit={handleSubmit} className="text-center mt-0 p-0 mb-0 w-100 mx-auto">
+          <div className="d-flex justify-content-center align-items-center fs-1 mb-3">
+            <Stars stars={stars} onClick={handleStarClick} /> {/* Select star rating */}
           </div>
           <div className="d-block mx-auto">
             <textarea
@@ -96,13 +79,14 @@ export const ReviewLocation = ({ currentUser, locations, updateLocations }) => {
               placeholder="Share details of your own experience at this place"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
+              required
             />
           </div>
           <div className="text-end mt-5 mb-0">
             <button
               type="button"
               className="btn btn-secondary my-2 me-3 text-end"
-              onClick={() => navigate(`/locations/${locationId}`)}
+              onClick={onClose} // Close the modal without submitting
             >
               Cancel
             </button>

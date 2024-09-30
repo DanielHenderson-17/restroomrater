@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stars } from "../shared/Stars.jsx";
-import "./RateLocation.css";
+import "./ReviewLocation.css";
 
 export const MyReviews = ({ currentUser, locations }) => {
   const navigate = useNavigate();

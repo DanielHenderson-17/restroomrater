@@ -114,4 +114,3 @@ export const LocationList = ({ locations, searchTerm, currentUser }) => {
   );
 };
 
-export default LocationList;
