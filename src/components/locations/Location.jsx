@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAllLocations } from "../../services/locationService.jsx";
 import { getAllUsers } from "../../services/userService.jsx";
 import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
 import "./Locations.css";
 
-export const Location = ({ currentUser }) => {
-  const { locationId } = useParams();
+export const Location = ({ currentUser, locationId }) => {
   const [location, setLocation] = useState(null);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
@@ -28,8 +27,11 @@ export const Location = ({ currentUser }) => {
 
   const calculateAverageRating = (ratings) => {
     if (ratings.length === 0) return 0;
-    const totalStars = ratings.reduce((total, rating) => total + rating.stars, 0);
-    return Math.ceil(totalStars / ratings.length);
+    const totalStars = ratings.reduce(
+      (total, rating) => total + rating.stars,
+      0
+    );
+    return Math.ceil(totalStars / ratings.length).toFixed(1);
   };
 
   const handleEditClick = (reviewId) => {
@@ -44,20 +46,24 @@ export const Location = ({ currentUser }) => {
         <img
           src={location.imgUrl || "https://via.placeholder.com/80"}
           alt={location.name}
-          className="location-image2"
+          className="location-image2 w-100"
         />
-        <div className="location-details2">
+        <div className="location-details ms-3 mt-3">
           <h2>{location.name}</h2>
-          <p>{location.address}</p>
+          <div className="d-flex justify-content-start align-items-center">
+          <p className="average-rating me-1 amount my-0 fs-6">
+                  {calculateAverageRating(location.ratings)}
+                </p>
+            <p className="rating-stars me-2 my-0">
+              <Stars stars={calculateAverageRating(location.ratings)} />
+            </p>
+            <p className="my-0">({location.ratings.length})</p>
+          </div>
+          <p className="my-0">{location.address}</p>
           <p>
             {location.city}, {location.state}
           </p>
-          <div className="d-flex justify-content-center align-items-center">
-            <p className="rating-stars mx-2">
-              <Stars stars={calculateAverageRating(location.ratings)} />
-            </p>
-            <p className="pt-1">({location.ratings.length})</p>
-          </div>
+          
           <button
             className="btn w-50 mx-auto p-0 mt-2"
             onClick={() => navigate(`/locations/${locationId}/rate`)}
@@ -106,7 +112,10 @@ export const Location = ({ currentUser }) => {
                     >
                       <i className="bi bi-three-dots"></i>
                     </div>
-                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
                       <li>
                         <button
                           className="dropdown-item"

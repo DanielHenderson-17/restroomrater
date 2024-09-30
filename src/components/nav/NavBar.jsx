@@ -9,15 +9,13 @@ export const NavBar = ({ onSearchClick, onMyReviewsClick, setSearchTerm }) => {
   return (
     <nav className="navbar navbar-expand-lg fixed-top mt-2">
       <div className="container-fluid">
-        <div className="col-3 ">
-          {/* Pass setSearchTerm to LocationFilterBar */}
+        <div className="col-3">
           <LocationFilterBar setSearchTerm={setSearchTerm} onSearchClick={onSearchClick} />
         </div>
 
-        <div className="collapse navbar-collapse justify-content-start col-3 ms-5">
+        <div className="collapse navbar-collapse justify-content-start col-3 ms-4">
           <ul className="navbar-nav">
             <li className="nav-item">
-              {/* Trigger the display of MyReviews when this button is clicked */}
               <button className="btn border-0 rounded-pill me-2 shadow" onClick={onMyReviewsClick}>
                 <i className="bi bi-person me-1"></i>My Reviews
               </button>
@@ -26,29 +24,38 @@ export const NavBar = ({ onSearchClick, onMyReviewsClick, setSearchTerm }) => {
         </div>
 
         <div className="d-flex">
-          <img
-            src="https://i.imgur.com/8Km9tLL.png"
-            alt="User"
-            className="rounded-circle"
-            width="40"
-            height="40"
-          />
-          {localStorage.getItem("rr_user") ? (
-            <Link
-              className="btn border-0 ms-2 rounded-pill logout-btn"
-              to=""
-              onClick={() => {
-                localStorage.removeItem("rr_user");
-                navigate("/", { replace: true });
-              }}
-            >
-              Logout
-            </Link>
-          ) : null}
+          <div className="dropdown">
+            <img
+              src="https://i.imgur.com/8Km9tLL.png"
+              alt="User"
+              className="rounded-circle dropdown-toggle"
+              width="40"
+              height="40"
+              id="userDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style={{ cursor: "pointer" }}
+            />
+
+            <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              {localStorage.getItem("rr_user") ? (
+                <li>
+                  <Link
+                    className="dropdown-item"
+                    to=""
+                    onClick={() => {
+                      localStorage.removeItem("rr_user");
+                      navigate("/", { replace: true });
+                    }}
+                  >
+                    Logout
+                  </Link>
+                </li>
+              ) : null}
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
   );
 };
-
-

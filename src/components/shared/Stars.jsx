@@ -26,5 +26,5 @@ export const Stars = ({ ratings = [], stars = 0, onClick }) => {
 
   const averageRating = ratings.length > 0 ? calculateAverageRating(ratings) : stars;
 
-  return <div>{renderStars(averageRating)}</div>;
+  return <span>{renderStars(averageRating)}</span>;
 };

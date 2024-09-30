@@ -1,20 +1,17 @@
 .main-container {
-    background-color: rgb(33, 134, 2)!important;
-    height: 100vh!important;
-    overflow-y: hidden;
+  background-color: rgba(33, 134, 2, 0) !important;
+  height: 100vh !important;
+  overflow-y: hidden;
 }
 
 .content-container {
-    overflow-y: scroll;
-    width: 28%;
+  overflow-y: scroll;
+  width: 25%;
+  background-color: rgba(0, 0, 255, 0);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 ::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* For all other browsers (to maintain scrolling functionality) */
-  element {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;     /* Firefox */
-  }
+  display: none;
+}

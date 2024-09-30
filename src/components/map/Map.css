@@ -1,0 +1,28 @@
+/* Make sure the map takes up the entire screen but remains interactive when not blocked */
+.map-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -10; /* Ensure the map stays behind all other components */
+    pointer-events: auto; /* Map is clickable by default */
+  }
+  
+  /* Keep the main container with a higher z-index but non-interactive by default */
+  .main-container {
+    position: relative;
+    z-index: 2; /* Stay above the map */
+    pointer-events: none; /* Prevent interaction with background elements */
+  }
+  
+  /* Ensure that only specific components within the main container are clickable */
+  .navbar, .sidebar, .content-container {
+    pointer-events: auto; /* These can be interacted with */
+  }
+  
+  /* Ensure LocationList items and any dynamic content within the content-container can receive clicks */
+  .location-card, .location-list, button, input, a {
+    pointer-events: auto; /* Interactive elements remain clickable */
+  }
+  

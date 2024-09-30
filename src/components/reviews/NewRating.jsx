@@ -4,7 +4,7 @@ import SelectUSState from "react-select-us-states";
 import { addLocationAndRating } from "../../services/locationService.jsx";
 import { Stars } from "../shared/Stars.jsx";
 
-export const NewRating = ({ currentUser }) => {
+export const NewReview = ({ currentUser }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");

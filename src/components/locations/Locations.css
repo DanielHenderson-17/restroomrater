@@ -1,11 +1,8 @@
 .location-list {
   height: 100vh!important;
   background-color: white!important;
-  margin-left: 5%;
-}
-
-.location-list::-webkit-scrollbar {
-  display: none; 
+  margin-left: 1.9%;
+  color: #63666b;
 }
 
 .location-item {
@@ -14,9 +11,8 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-
-
 .location-img {
+
   width: 100%;
 }
 
@@ -27,3 +23,67 @@
 .location-cards  {
   background-color: white;
 }
+
+.border-bottom {
+  border-bottom: 1px solid #c0c2c7!important;
+}
+
+.location-modal .modal-dialog {
+  position: absolute;
+  top: 5%;
+  left: 28.5%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 90vh!important;
+  height: auto;
+  border-radius: 23px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+
+.location-modal .modal-content {
+  position: relative;
+  border-radius: 23px;
+  background-color: white;
+  overflow: hidden;
+  border: none;
+  outline: 1px solid #dadce000;
+}
+
+.close-button-container {
+  position: absolute;
+  top: 10px;
+  right: 10px; 
+  z-index: 10;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.location-modal .modal-body {
+  padding: 0;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.location-details img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.location-card {
+  border-bottom: 1px solid #dadce0;
+}
+
+.location-card:hover {
+  background-color: #f7f8f8;
+  cursor: pointer;
+}
+

@@ -1,22 +1,24 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, Routes, Route } from 'react-router-dom';
-import { NavBar } from '../components/nav/NavBar.jsx';
-import { SideBar } from '../components/nav/SideBar.jsx';
-import { LocationList } from '../components/locations/LocationList';
-import { MyReviews } from '../components/reviews/MyReviews';
+import { useState, useEffect } from "react";
+import { useNavigate, Routes, Route } from "react-router-dom";
+import { NavBar } from "../components/nav/NavBar.jsx";
+import { SideBar } from "../components/nav/SideBar.jsx";
+import { LocationList } from "../components/locations/LocationList";
+import { MyReviews } from "../components/reviews/MyReviews";
 import { getAllLocations } from "../services/locationService.jsx";
+import { Map } from "../components/map/Map.jsx"; 
+
 import "./main.css";
 
 export const ApplicationViews = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
   const [locations, setLocations] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(''); // New state for search term
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("rr_user"));
     if (storedUser) {
-      setCurrentUser(storedUser); 
+      setCurrentUser(storedUser);
     }
   }, []);
 
@@ -26,38 +28,32 @@ export const ApplicationViews = () => {
     });
   }, []);
 
-  // Handle search click to navigate to /locations
-  const handleSearchClick = () => {
-    navigate('/locations');
-  };
-
-  // Handle My Reviews click to navigate to /my-reviews
-  const handleMyReviewsClick = () => {
-    navigate('/my-reviews');
-  };
-
   return (
     <div className="main-container d-flex h-100">
-      {/* Pass the search term and handlers as props to NavBar */}
-      <NavBar 
-        onSearchClick={handleSearchClick} 
-        onMyReviewsClick={handleMyReviewsClick} 
-        setSearchTerm={setSearchTerm} 
+      <Map />
+      <NavBar
+        onSearchClick={() => navigate("/locations")}
+        onMyReviewsClick={() => navigate("/my-reviews")}
+        setSearchTerm={setSearchTerm}
       />
-
-      {/* Static SideBar */}
       <SideBar />
-
-      {/* Dynamic Content Area using Routes */}
       <div className="content-container d-flex ms-5">
         <Routes>
-          <Route 
-            path="/locations" 
-            element={<LocationList locations={locations} searchTerm={searchTerm} />} 
+          <Route
+            path="/locations"
+            element={
+              <LocationList
+                locations={locations}
+                searchTerm={searchTerm}
+                currentUser={currentUser}
+              />
+            }
           />
-          <Route 
-            path="/my-reviews" 
-            element={<MyReviews currentUser={currentUser} locations={locations} />} 
+          <Route
+            path="/my-reviews"
+            element={
+              <MyReviews currentUser={currentUser} locations={locations} />
+            }
           />
         </Routes>
       </div>
