@@ -72,6 +72,7 @@
   overflow-y: auto;
 }
 
+
 .location-details img {
   width: 100%;
   height: auto;
@@ -87,3 +88,6 @@
   cursor: pointer;
 }
 
+.review-btn-lg {
+  color: #1d6ff3;
+}

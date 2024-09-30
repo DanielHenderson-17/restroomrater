@@ -32,7 +32,7 @@ form {
 
 .my-ratings {
   background-color: white;
-  margin-left: 5%;
+  margin-left: 1.9%;
 }
 
 .dropdown-toggle::after {
@@ -45,4 +45,9 @@ form {
   width: 40px;
   outline: 1px solid #1d6ff3;
   color: #1d6ff3;
+}
+
+.review-avatar {
+  height: 40px!important;
+  width: 40px!important;
 }

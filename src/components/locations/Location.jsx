@@ -48,61 +48,56 @@ export const Location = ({ currentUser, locationId }) => {
           alt={location.name}
           className="location-image2 w-100"
         />
-        <div className="location-details ms-3 mt-3">
-          <h2>{location.name}</h2>
-          <div className="d-flex justify-content-start align-items-center">
-          <p className="average-rating me-1 amount my-0 fs-6">
-                  {calculateAverageRating(location.ratings)}
-                </p>
+        <div className="location-details  mt-3">
+          <h2 className="ms-3">{location.name}</h2>
+          <div className="d-flex justify-content-start align-items-center ms-3">
+            <p className="average-rating me-1 amount my-0 fs-6">
+              {calculateAverageRating(location.ratings)}
+            </p>
             <p className="rating-stars me-2 my-0">
               <Stars stars={calculateAverageRating(location.ratings)} />
             </p>
             <p className="my-0">({location.ratings.length})</p>
           </div>
-          <p className="my-0">{location.address}</p>
-          <p>
+          <p className="my-0 ms-3">{location.address}</p>
+          <p className="ms-3">
             {location.city}, {location.state}
           </p>
-          
-          <button
-            className="btn w-50 mx-auto p-0 mt-2"
-            onClick={() => navigate(`/locations/${locationId}/rate`)}
-          >
-            Rate
-          </button>
+          <div className="d-flex justify-content-center align-items-center w-100 mb-3">
+            <button
+              className="btn mx-auto py-2 px-4 mt-2 text-center rounded-5 border"
+              onClick={() => navigate(`/locations/${locationId}/rate`)}
+            >
+              <i className="bi bi-pencil-square me-2 review-btn-lg"></i>Write a
+              review
+            </button>
+          </div>
         </div>
       </div>
-      <h3 className="mt-5 mb-3">Reviews</h3>
       <div className="reviews">
         {location.ratings.map((review) => {
           const user = users.find((user) => user.id === review.userId);
           const isCurrentUser = currentUser && currentUser.id === review.userId;
           return (
-            <div key={review.id} className="review-card">
-              <div className="review-header">
-                <img
-                  src={
-                    user && user.imgUrl
-                      ? user.imgUrl
-                      : "https://via.placeholder.com/40"
-                  }
-                  alt="user avatar"
-                  className="review-avatar"
-                />
-                <strong>{user ? user.name : "Unknown User"}</strong>
-              </div>
-              <div className="review-rating-date d-flex justify-content-start mb-2">
-                <span className="rating-stars fs-5">
-                  <Stars stars={review.stars} />
-                </span>
-                <span className="review-date align-self-center">
-                  {new Date(review.date).toLocaleDateString()}
-                </span>
-              </div>
-              <p className="review-comment">{review.comment}</p>
-              {isCurrentUser && (
-                <div className="d-flex justify-content-end">
-                  <div className="dropdown">
+            <div key={review.id} className="review-card pe-4 mt-5 border-bottom pb-4">
+              <div className="review-header ms-4 d-flex justify-content-between align-items-center mb-2">
+                <div className="d-flex align-items-center">
+                  <img
+                    src={
+                      user && user.imgUrl
+                        ? user.imgUrl
+                        : "https://via.placeholder.com/40"
+                    }
+                    alt="user avatar"
+                    className="review-avatar rounded-circle me-2"
+                  />
+                  <div>
+                    <p className="d-block my-0 fw-bolder">{user ? user.name : "Unknown User"}</p>
+                    <p className="d-block my-0">Reviews</p>
+                  </div>
+                </div>
+                {isCurrentUser && (
+                  <div className="dropdown ms-auto">
                     <div
                       className="dropdown-toggle"
                       type="button"
@@ -110,7 +105,7 @@ export const Location = ({ currentUser, locationId }) => {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <i className="bi bi-three-dots"></i>
+                      <i className="bi bi-three-dots-vertical"></i>
                     </div>
                     <ul
                       className="dropdown-menu"
@@ -126,8 +121,17 @@ export const Location = ({ currentUser, locationId }) => {
                       </li>
                     </ul>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+              <div className="review-rating-date ms-4 d-flex justify-content-start mb-2">
+                <span className="rating-stars fs-5">
+                  <Stars stars={review.stars} />
+                </span>
+                <span className="review-date align-self-center ms-2">
+                  {new Date(review.date).toLocaleDateString()}
+                </span>
+              </div>
+              <p className="review-comment ms-4">{review.comment}</p>
             </div>
           );
         })}
