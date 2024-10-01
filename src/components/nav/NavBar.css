@@ -4,8 +4,8 @@
   background-color: #ffffff;
 }
 
-.logout-btn {
-  background-color: #ffffff;
+.logout-btn:hover {
+  cursor: pointer;
 }
 
 .form-control {
@@ -29,4 +29,36 @@
 .filter-bar {
   height: 50px!important;
   padding-left: 15px;
+}
+
+.main-menu {
+  margin-top: 20px!important;
+  margin-right: 20px;
+  width: 420px;
+  height: 500px;
+  background-color: #e9eef6;
+}
+
+.avatar-2-img {
+  width: 20%;
+  height: 20%;
+}
+
+.other-accounts {
+  background-color: white;
+  height: 210px;
+  overflow-y: scroll;
+}
+
+.other-account {
+  border: 1px solid #e9eef6;
+}
+
+.other-accounts::-webkit-scrollbar {
+  display: none!important;
+}
+
+.logout:hover {
+  cursor: default;
+  background-color: transparent;
 }

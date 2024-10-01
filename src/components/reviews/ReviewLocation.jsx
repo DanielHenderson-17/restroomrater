@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { submitRating, getAllLocations } from "../../services/locationService.jsx";
 import { Stars } from "../shared/Stars.jsx";
+import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
 import "./ReviewLocation.css";
 
 export const ReviewLocation = ({ currentUser, updateLocations }) => {
@@ -50,15 +51,6 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
     submitRating(newReview).then((updatedLocations) => {
       updateLocations(updatedLocations);
     });
-  };
-
-  const calculateAverageRating = (ratings) => {
-    if (ratings.length === 0) return 0;
-    const totalStars = ratings.reduce(
-      (total, rating) => total + rating.stars,
-      0
-    );
-    return (totalStars / ratings.length).toFixed(1);
   };
 
   const handleStarClick = (rating) => {

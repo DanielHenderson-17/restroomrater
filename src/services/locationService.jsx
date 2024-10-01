@@ -15,6 +15,28 @@ const apiFetch = (endpoint, method = 'GET', data = null) => {
   });
 };
 
+export const searchNominatim = async (query) => {
+  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=5`;
+  
+  console.log("Making API request to:", url);
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error('Failed to fetch search results');
+    }
+    const data = await res.json();
+    console.log("API Response:", data); // Log the response
+    return data;
+  } catch (error) {
+    console.error("Error during API request:", error);
+    throw error;
+  }
+};
+
+
+
+
 export const getAllLocations = () => {
   return apiFetch('/locations?_embed=ratings');
 };

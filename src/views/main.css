@@ -1,17 +1,20 @@
+
 .main-container {
-  background-color: rgba(33, 134, 2, 0) !important;
+  background-color: rgba(0, 128, 0, 0)!important;
   height: 100vh !important;
   overflow-y: hidden;
 }
 
 .content-container {
   margin-top: 75px!important;
+  background-color: rgba(0, 128, 0, 0)!important;
   overflow-y: scroll;
-  width: 25%;
+  width: 50%;
   height: 87%;
   background-color: rgba(0, 0, 255, 0);
   -ms-overflow-style: none;
   scrollbar-width: none;
+  display: none;
 }
 
 ::-webkit-scrollbar {
@@ -45,4 +48,3 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-

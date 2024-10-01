@@ -7,15 +7,16 @@ import { MyReviews } from "../components/reviews/MyReviews";
 import { getAllLocations } from "../services/locationService.jsx";
 import { Map } from "../components/map/Map.jsx"; 
 import { Location } from "../components/locations/Location"; 
-
-import "./main.css";
 import { EditReview } from "../components/reviews/EditReview.jsx";
 import { ReviewLocation } from "../components/reviews/ReviewLocation.jsx";
+
+import "./main.css";
 
 export const ApplicationViews = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null);
   const [locations, setLocations] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -35,13 +36,19 @@ export const ApplicationViews = () => {
     setLocations(updatedLocations);
   };
 
+  const onMyReviewsClick = () => {
+    navigate("/my-reviews");
+  };
+
   return (
     <div className="main-container d-flex h-100">
-      <Map />
+
       <NavBar
         onSearchClick={() => navigate("/locations")}
-        onMyReviewsClick={() => navigate("/my-reviews")}
+        onMyReviewsClick={onMyReviewsClick}
+        setSearchResults={setSearchResults}
         setSearchTerm={setSearchTerm}
+        currentUser={currentUser}
       />
       <SideBar />
       
@@ -72,21 +79,21 @@ export const ApplicationViews = () => {
               <EditReview
                 currentUser={currentUser}
                 updateLocations={updateLocations}
-              />}
-          
+              />
+            }
           />
           <Route
-  path="/locations/:locationId/rate"
-  element={
-    <ReviewLocation
-      currentUser={currentUser}
-      updateLocations={updateLocations}
-    />
-  }
-/>
-
+            path="/locations/:locationId/rate"
+            element={
+              <ReviewLocation
+                currentUser={currentUser}
+                updateLocations={updateLocations}
+              />
+            }
+          />
         </Routes>
       </div>
+      <Map searchResults={searchResults} />
     </div>
   );
 };

@@ -7,28 +7,24 @@ import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
 import "./Locations.css";
 
 export const Location = ({ currentUser }) => {
-  const { locationId } = useParams(); // Get the locationId from the URL
+  const { locationId } = useParams();
   const [location, setLocation] = useState(null);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllLocations().then((fetchedLocations) => {
-      const selectedLocation = fetchedLocations.find(
-        (loc) => loc.id === parseInt(locationId)
-      );
-      setLocation(selectedLocation);
-    });
+    getAllLocations().then((locations) =>
+      setLocation(locations.find((loc) => loc.id === +locationId))
+    );
+    getAllUsers().then(setUsers);
   }, [locationId]);
 
-  useEffect(() => {
-    getAllUsers().then((fetchedUsers) => {
-      setUsers(fetchedUsers);
-    });
-  }, []);
-
   const handleWriteReviewClick = () => {
-    navigate(`/locations/${locationId}/rate`);
+    if (location.ratings.some((r) => r.userId === currentUser.id)) {
+      alert("You have already submitted a review for this location.");
+    } else {
+      navigate(`/locations/${locationId}/rate`);
+    }
   };
 
   if (!location || users.length === 0) return <p>Loading...</p>;
