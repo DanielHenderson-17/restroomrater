@@ -6,8 +6,11 @@ import { LocationList } from "../components/locations/LocationList";
 import { MyReviews } from "../components/reviews/MyReviews";
 import { getAllLocations } from "../services/locationService.jsx";
 import { Map } from "../components/map/Map.jsx"; 
+import { Location } from "../components/locations/Location"; 
 
 import "./main.css";
+import { EditReview } from "../components/reviews/EditReview.jsx";
+import { ReviewLocation } from "../components/reviews/ReviewLocation.jsx";
 
 export const ApplicationViews = () => {
   const navigate = useNavigate();
@@ -28,6 +31,10 @@ export const ApplicationViews = () => {
     });
   }, []);
 
+  const updateLocations = (updatedLocations) => {
+    setLocations(updatedLocations);
+  };
+
   return (
     <div className="main-container d-flex h-100">
       <Map />
@@ -37,17 +44,21 @@ export const ApplicationViews = () => {
         setSearchTerm={setSearchTerm}
       />
       <SideBar />
-      <div className="content-container d-flex ms-5">
+      
+      {/* Always display LocationList */}
+      <LocationList
+        locations={locations}
+        searchTerm={searchTerm}
+        currentUser={currentUser}
+      />
+
+      {/* Main content area for other routes */}
+      <div className="content-container d-flex ms-3 justify-content-center my-auto align-items-center rounded-3 scrollbar-hide">
         <Routes>
+          {/* Display Location Details */}
           <Route
-            path="/locations"
-            element={
-              <LocationList
-                locations={locations}
-                searchTerm={searchTerm}
-                currentUser={currentUser}
-              />
-            }
+            path="/locations/:locationId"
+            element={<Location currentUser={currentUser} />}
           />
           <Route
             path="/my-reviews"
@@ -55,10 +66,27 @@ export const ApplicationViews = () => {
               <MyReviews currentUser={currentUser} locations={locations} />
             }
           />
+         <Route
+            path="/locations/:locationId/edit/:reviewId"
+            element={
+              <EditReview
+                currentUser={currentUser}
+                updateLocations={updateLocations}
+              />}
+          
+          />
+          <Route
+  path="/locations/:locationId/rate"
+  element={
+    <ReviewLocation
+      currentUser={currentUser}
+      updateLocations={updateLocations}
+    />
+  }
+/>
+
         </Routes>
       </div>
     </div>
   );
 };
-
-export default ApplicationViews;

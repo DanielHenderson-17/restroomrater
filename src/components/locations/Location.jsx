@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getAllLocations } from "../../services/locationService.jsx";
 import { getAllUsers } from "../../services/userService.jsx";
 import { Stars } from "../shared/Stars.jsx";
+import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
 import "./Locations.css";
 
-export const Location = ({ currentUser, locationId }) => {
+export const Location = ({ currentUser }) => {
+  const { locationId } = useParams(); // Get the locationId from the URL
   const [location, setLocation] = useState(null);
   const [users, setUsers] = useState([]);
-  const [userReviewCounts, setUserReviewCounts] = useState({}); // State to store review counts
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,19 +18,6 @@ export const Location = ({ currentUser, locationId }) => {
         (loc) => loc.id === parseInt(locationId)
       );
       setLocation(selectedLocation);
-
-      // Count the number of reviews each user has made across all locations
-      const reviewCounts = {};
-      fetchedLocations.forEach((location) => {
-        location.ratings.forEach((rating) => {
-          if (reviewCounts[rating.userId]) {
-            reviewCounts[rating.userId] += 1;
-          } else {
-            reviewCounts[rating.userId] = 1;
-          }
-        });
-      });
-      setUserReviewCounts(reviewCounts); // Save the review counts
     });
   }, [locationId]);
 
@@ -39,26 +27,21 @@ export const Location = ({ currentUser, locationId }) => {
     });
   }, []);
 
-  const calculateAverageRating = (ratings) => {
-    if (ratings.length === 0) return 0;
-    const totalStars = ratings.reduce(
-      (total, rating) => total + rating.stars,
-      0
-    );
-    return (totalStars / ratings.length).toFixed(1);
+  const handleWriteReviewClick = () => {
+    navigate(`/locations/${locationId}/rate`);
   };
 
   if (!location || users.length === 0) return <p>Loading...</p>;
 
   return (
-    <div className="location-details">
+    <div className="location-details w-100 h-100">
       <div className="location-card">
         <img
           src={location.imgUrl || "https://via.placeholder.com/80"}
           alt={location.name}
-          className="location-image2 w-100"
+          className="location-image w-100"
         />
-        <div className="location-details mt-3">
+        <div className="mt-3">
           <h2 className="ms-3">{location.name}</h2>
           <div className="d-flex justify-content-start align-items-center ms-3">
             <p className="average-rating me-1 amount my-0 fs-6">
@@ -71,6 +54,15 @@ export const Location = ({ currentUser, locationId }) => {
           <p className="ms-3">
             {location.city}, {location.state}
           </p>
+          <div className="d-flex justify-content-center align-items-center w-100 mb-3">
+            <button
+              className="btn mx-auto py-2 px-4 mt-2 text-center rounded-5 border"
+              onClick={handleWriteReviewClick}
+            >
+              <i className="bi bi-pencil-square me-2 review-btn-lg"></i>Write a
+              review
+            </button>
+          </div>
         </div>
       </div>
 
@@ -79,8 +71,6 @@ export const Location = ({ currentUser, locationId }) => {
         {location.ratings.map((review) => {
           const user = users.find((user) => user.id === review.userId);
           const isCurrentUser = currentUser && currentUser.id === review.userId;
-          const reviewCount = userReviewCounts[review.userId] || 0; // Get the total review count for this user
-
           return (
             <div key={review.id} className="review-card pe-4 mt-5 border-bottom pb-4">
               <div className="review-header ms-4 d-flex justify-content-between align-items-center mb-2">
@@ -96,9 +86,7 @@ export const Location = ({ currentUser, locationId }) => {
                   />
                   <div>
                     <p className="d-block my-0 fw-bolder">{user ? user.name : "Unknown User"}</p>
-                    <p className="d-block my-0">
-                      {reviewCount} {reviewCount === 1 ? "review" : "reviews"} {/* Display the review count */}
-                    </p>
+                    <p className="d-block my-0">{calculateAverageRating(location.ratings)} Reviews</p>
                   </div>
                 </div>
                 {isCurrentUser && (

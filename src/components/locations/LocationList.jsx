@@ -1,13 +1,11 @@
-import { useEffect, useState, useRef } from "react";
-import { Modal } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Stars } from "../shared/Stars.jsx";
-import { Location } from "./Location";
+import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
 
-export const LocationList = ({ locations, searchTerm, currentUser }) => {
+export const LocationList = ({ locations, searchTerm }) => {
   const [filteredLocations, setFilteredLocations] = useState([]);
-  const [selectedLocationId, setSelectedLocationId] = useState(null);
-  const [showModal, setShowModal] = useState(false);
-  const modalRef = useRef(null); // Reference for the modal
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFilteredLocations(
@@ -18,44 +16,12 @@ export const LocationList = ({ locations, searchTerm, currentUser }) => {
   }, [searchTerm, locations]);
 
   const handleCardClick = (locationId) => {
-    setSelectedLocationId(locationId);
-    setShowModal(true);
+    navigate(`/locations/${locationId}`);
   };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedLocationId(null);
-  };
-
-  // Define the calculateAverageRating function at the top of the file
-  const calculateAverageRating = (ratings) => {
-    if (ratings.length === 0) return 0;
-    const total = ratings.reduce((sum, rating) => sum + rating.stars, 0);
-    return (total / ratings.length).toFixed(1); // Rounded to one decimal place
-  };
-
-  // Detect clicks outside the modal to close it
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        handleCloseModal();
-      }
-    };
-
-    if (showModal) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showModal]);
 
   return (
-    <div className="location-list pt-5 w-100">
-      <div className="location-cards mt-5">
+    <div className="location-list pt-5 w-25 ms-5">
+      <div className="location-cards mt-5 ms-3">
         <h5 className="ms-4">Locations</h5>
         {filteredLocations.map((location) => (
           <div
@@ -84,33 +50,6 @@ export const LocationList = ({ locations, searchTerm, currentUser }) => {
           </div>
         ))}
       </div>
-
-      <Modal
-        show={showModal}
-        onHide={handleCloseModal}
-        size="md"
-        backdrop={false}
-        className="location-modal w-100 p-0 m-0"
-      >
-        <div className="close-button-container">
-          <button
-            type="button"
-            className="close-button"
-            onClick={handleCloseModal}
-          >
-            &times;
-          </button>
-        </div>
-        <Modal.Body ref={modalRef} className="p-0 m-0">
-          {selectedLocationId && (
-            <Location
-              currentUser={currentUser}
-              locationId={selectedLocationId}
-            />
-          )}
-        </Modal.Body>
-      </Modal>
     </div>
   );
 };
-

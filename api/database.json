@@ -1,28 +1,52 @@
 {
   "users": [
     {
-      "email": "gunnar@gunnar.com",
-      "name": "ZombieLynxGaming",
-      "imgUrl": "https://zlg.gg/assets/images/normallynx.png",
-      "totalRatings": 0,
-      "averageRatings": 0,
+      "email": "zlg@gunnar.com",
+      "name": "Yo Mamma",
+      "imgUrl": "https://i.imgur.com/nbZ9vAeb.jpg",
       "id": 1
     },
     {
       "email": "djhindu17@gmail.com",
       "name": "Daniel Henderson",
       "imgUrl": "https://danielhenderson17.com/img/Portrait.png",
-      "totalRatings": 0,
-      "averageRatings": 0,
       "id": 2
     },
     {
       "email": "julieannwest10@gmail.com",
-      "name": "ZombieLynxGaming",
+      "name": "ZombieLynx Gaming",
       "imgUrl": "https://danielhenderson17.com/img/Portrait.png",
-      "totalRatings": 0,
-      "averageRatings": 0,
       "id": 3
+    },
+    {
+      "email": "alex.smith@gmail.com",
+      "name": "Alex Smith",
+      "imgUrl": "https://i.imgur.com/HXY3V2U.jpeg",
+      "id": 4
+    },
+    {
+      "email": "karen.jones@gmail.com",
+      "name": "Karen Jones",
+      "imgUrl": "https://i.imgur.com/OHIQCdC.jpeg",
+      "id": 5
+    },
+    {
+      "email": "bobby.brown@gmail.com",
+      "name": "Bobby Brown",
+      "imgUrl": "https://i.imgur.com/lQDu7f0.jpeg",
+      "id": 6
+    },
+    {
+      "email": "emily.davis@gmail.com",
+      "name": "Emily Davis",
+      "imgUrl": "https://i.imgur.com/02edpZp.jpeg",
+      "id": 7
+    },
+    {
+      "email": "chris.taylor@gmail.com",
+      "name": "Chris Taylor",
+      "imgUrl": "https://i.imgur.com/ozhFhOs.jpeg",
+      "id": 8
     }
   ],
   "locations": [
@@ -75,62 +99,126 @@
       "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
     },
     {
+      "id": 7,
       "name": "Shell",
       "address": "Old Fort Pkwy",
-      "city": "MURFREESBORO",
+      "city": "Murfreesboro",
       "state": "Tennessee",
-      "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png",
-      "id": 7
+      "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png"
     },
     {
+      "id": 8,
       "name": "Exxon",
       "address": "123 Cherry Street",
       "city": "Boeing",
       "state": "AL",
-      "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png",
-      "id": 8
-    },
-    {
-      "name": "test",
-      "address": "test",
-      "city": "test",
-      "state": "AL",
-      "imgUrl": "none",
-      "id": 9
+      "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png"
     }
   ],
   "ratings": [
     {
-      "id": 2,
-      "stars": 3,
-      "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness. A little extra effort could go a long way here.",
-      "date": "2024-09-17T14:30:00",
-      "userId": 1,
-      "locationId": 2
-    },
-    {
       "userId": 2,
       "stars": 4,
-      "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness. A little extra effort could go a long way here.",
+      "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness.",
       "locationId": 4,
       "date": "2024-09-27T16:16:02.379Z",
       "id": 6
     },
     {
-      "userId": 2,
+      "userId": 1,
       "stars": 4,
-      "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness. A little extra effort could go a long way here.",
-      "locationId": 7,
-      "date": "2024-09-27T16:24:57.137Z",
+      "comment": "Pretty clean overall. It could use a bit of tidying up during busy hours, but it’s decent.",
+      "locationId": 1,
+      "date": "2024-09-30T12:15:37.892Z",
+      "id": 7
+    },
+    {
+      "userId": 3,
+      "stars": 3,
+      "comment": "The bathroom had an odd smell and was a bit dirty.",
+      "locationId": 1,
+      "date": "2024-09-30T12:50:12.672Z",
       "id": 8
     },
     {
-      "userId": 2,
+      "userId": 6,
       "stars": 4,
-      "comment": "Not bad, but could be cleaner. I don't feel it's that big of a deal to clean a bathroom. We all use them, we all want them clean, so it’s a bit disappointing that the place wasn’t up to par in terms of cleanliness. A little extra effort could go a long way here.",
+      "comment": "Clean bathroom, but some areas like the sink needed attention.",
       "locationId": 1,
-      "date": "2024-09-27T22:15:37.892Z",
+      "date": "2024-09-30T13:15:55.234Z",
       "id": 9
+    },
+    {
+      "userId": 3,
+      "stars": 3,
+      "comment": "The bathroom was not well-maintained. It had an odd smell and was dirty.",
+      "locationId": 2,
+      "date": "2024-09-30T13:45:23.112Z",
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "stars": 4,
+      "comment": "Clean bathroom overall, but the toilet paper was running low.",
+      "locationId": 2,
+      "date": "2024-09-30T14:12:32.876Z",
+      "id": 11
+    },
+    {
+      "userId": 4,
+      "stars": 5,
+      "comment": "Surprisingly clean for a gas station! Very impressed.",
+      "locationId": 3,
+      "date": "2024-09-30T14:30:12.785Z",
+      "id": 12
+    },
+    {
+      "userId": 7,
+      "stars": 5,
+      "comment": "Spotless! One of the cleanest bathrooms I’ve ever encountered at a gas station.",
+      "locationId": 3,
+      "date": "2024-09-30T16:02:28.892Z",
+      "id": 13
+    },
+    {
+      "userId": 5,
+      "stars": 3,
+      "comment": "The bathroom was okay, but I expected it to be cleaner.",
+      "locationId": 5,
+      "date": "2024-09-30T15:20:15.673Z",
+      "id": 15
+    },
+    {
+      "userId": 6,
+      "stars": 4,
+      "comment": "Overall clean, but there were some issues with the sink area being messy.",
+      "locationId": 5,
+      "date": "2024-09-30T15:55:46.234Z",
+      "id": 16
+    },
+    {
+      "userId": 5,
+      "stars": 4,
+      "comment": "Decent bathroom. The floors were a bit slippery, but otherwise clean.",
+      "locationId": 6,
+      "date": "2024-09-30T16:25:33.456Z",
+      "id": 17
+    },
+    {
+      "userId": 7,
+      "stars": 5,
+      "comment": "Extremely clean and well-kept. Very impressed with the upkeep.",
+      "locationId": 7,
+      "date": "2024-09-30T16:35:21.673Z",
+      "id": 18
+    },
+    {
+      "userId": 8,
+      "stars": 4,
+      "comment": "Clean and tidy. Could have been better stocked with soap, but otherwise great.",
+      "locationId": 8,
+      "date": "2024-09-30T16:45:03.276Z",
+      "id": 19
     }
   ]
 }

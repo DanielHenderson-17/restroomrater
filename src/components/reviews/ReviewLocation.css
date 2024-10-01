@@ -1,5 +1,4 @@
 form {
-  margin-left: 0;
   border: none;
   box-shadow: none !important;
 }
@@ -21,18 +20,13 @@ form {
   height: 80px;
 }
 
-.location-image {
-  width: 130px;
-  height: 100%!important;
-}
-
 .amount, .date {
   color: rgb(48, 48, 48);
 }
 
 .my-ratings {
   background-color: white;
-  margin-left: 1.9%;
+  
 }
 
 .dropdown-toggle::after {
@@ -50,4 +44,20 @@ form {
 .review-avatar {
   height: 40px!important;
   width: 40px!important;
+}
+
+.reviews {
+  background-color: white;
+}
+
+.edit-review-text-area {
+  height: 200px;
+}
+
+.review-img {
+  width: 35%!important;
+}
+
+.edit-review {
+  overflow: hidden;
 }

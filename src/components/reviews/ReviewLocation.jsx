@@ -1,25 +1,35 @@
 import { useState, useEffect } from "react";
-import { submitRating } from "../../services/locationService.jsx";
-import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
+import { useParams } from "react-router-dom";
+import { submitRating, getAllLocations } from "../../services/locationService.jsx";
+import { Stars } from "../shared/Stars.jsx";
 import "./ReviewLocation.css";
 
-export const ReviewLocation = ({ currentUser, location, updateLocations, onClose }) => {
+export const ReviewLocation = ({ currentUser, updateLocations }) => {
+  const { locationId } = useParams();
+  const [location, setLocation] = useState(null);
   const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
 
   useEffect(() => {
-    if (!location) return;
+    getAllLocations().then((fetchedLocations) => {
+      const selectedLocation = fetchedLocations.find(
+        (loc) => loc.id === parseInt(locationId)
+      );
+      setLocation(selectedLocation);
+    });
+  }, [locationId]);
 
-    // Check if the user has already reviewed this location
+  useEffect(() => {
+    if (!location || !currentUser) return;
+
     const existingReview = location.ratings.find(
       (review) => review.userId === currentUser.id
     );
 
     if (existingReview) {
       alert("You have already made a review for this location.");
-      onClose(); // Close the modal if the user already reviewed
     }
-  }, [location, currentUser, onClose]);
+  }, [location, currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,44 +43,66 @@ export const ReviewLocation = ({ currentUser, location, updateLocations, onClose
       userId: currentUser.id,
       stars: stars,
       comment: comment,
-      locationId: location.id, // Set locationId from the passed location prop
+      locationId: location.id,
       date: new Date().toISOString(),
     };
 
     submitRating(newReview).then((updatedLocations) => {
-      updateLocations(updatedLocations); // Update locations after submission
-      onClose(); // Close the modal after submission
+      updateLocations(updatedLocations);
     });
+  };
+
+  const calculateAverageRating = (ratings) => {
+    if (ratings.length === 0) return 0;
+    const totalStars = ratings.reduce(
+      (total, rating) => total + rating.stars,
+      0
+    );
+    return (totalStars / ratings.length).toFixed(1);
   };
 
   const handleStarClick = (rating) => {
     setStars(rating);
   };
 
-  return location ? (
-    <div>
+  if (!location) return <p>Loading...</p>;
+
+  return (
+    <div className="card review-loc w-100 h-100 col-4 mx-auto mt-5">
       {/* Location details */}
-      <div className="mb-3 mx-auto col-8 p-3 mb-5 bg-white">
-        <div className="text-center">
-          <h5>{location.name}</h5>
+      <div className="location-card d-flex justify-content-start w-100">
+        <img src={location.imgUrl} alt="" className="review-img"/>
+        <div className="ms-3 pt-2">
+          <h2 className="ms-3">{location.name}</h2>
+          <div className="d-flex justify-content-start align-items-center ms-3">
+            <p className="average-rating me-1 amount my-0 fs-6">
+              {calculateAverageRating(location.ratings)}
+            </p>
+            <Stars stars={calculateAverageRating(location.ratings)} />
+            <p className="my-0">({location.ratings.length})</p>
+          </div>
+          <p className="my-0 ms-3">{location.address}</p>
+          <p className="ms-3">
+            {location.city}, {location.state}
+          </p>
         </div>
       </div>
 
       {/* Review form */}
-      <div className="mx-auto mt-5">
+      <div className="mx-auto mt-5 w-100">
         {currentUser && (
-          <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5 text-left w-100">
+          <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5 text-left w-75 ms-3">
             <img
               src={currentUser.imgUrl || "https://via.placeholder.com/40"}
               alt="User avatar"
-              className="user-avatar"
+              className="user-avatar ms-5"
             />
-            <h4 className="text-start ms-2">{currentUser.name}</h4>
+            <h4 className="text-center ms-2">{currentUser.name}</h4>
           </div>
         )}
-        <form onSubmit={handleSubmit} className="text-center mt-0 p-0 mb-0 w-100 mx-auto">
+        <form onSubmit={handleSubmit} className="text-center mt-0 p-0 mb-0 w-75 mx-auto">
           <div className="d-flex justify-content-center align-items-center fs-1 mb-3">
-            <Stars stars={stars} onClick={handleStarClick} /> {/* Select star rating */}
+            <Stars stars={stars} onClick={handleStarClick} />
           </div>
           <div className="d-block mx-auto">
             <textarea
@@ -83,13 +115,6 @@ export const ReviewLocation = ({ currentUser, location, updateLocations, onClose
             />
           </div>
           <div className="text-end mt-5 mb-0">
-            <button
-              type="button"
-              className="btn btn-secondary my-2 me-3 text-end"
-              onClick={onClose} // Close the modal without submitting
-            >
-              Cancel
-            </button>
             <button type="submit" className="btn btn-success my-2">
               Post
             </button>
@@ -97,7 +122,5 @@ export const ReviewLocation = ({ currentUser, location, updateLocations, onClose
         </form>
       </div>
     </div>
-  ) : (
-    <p>Loading...</p>
   );
 };

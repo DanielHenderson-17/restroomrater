@@ -2,18 +2,15 @@
   height: 100vh!important;
   background-color: white!important;
   margin-left: 1.9%;
+  width: 25.5%!important;
   color: #63666b;
+  overflow-y: scroll;
 }
 
 .location-item {
   margin-bottom: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.location-img {
-
-  width: 100%;
 }
 
 .rounded-pill {
@@ -26,28 +23,6 @@
 
 .border-bottom {
   border-bottom: 1px solid #c0c2c7!important;
-}
-
-.location-modal .modal-dialog {
-  position: absolute;
-  top: 5%;
-  left: 28.5%;
-  transform: translate(-50%, -50%);
-  width: 500px;
-  height: 90vh!important;
-  height: auto;
-  border-radius: 23px;
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
-
-.location-modal .modal-content {
-  position: relative;
-  border-radius: 23px;
-  background-color: white;
-  overflow: hidden;
-  border: none;
-  outline: 1px solid #dadce000;
 }
 
 .close-button-container {
@@ -66,15 +41,9 @@
   cursor: pointer;
 }
 
-.location-modal .modal-body {
-  padding: 0;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-
 .location-details img {
   width: 100%;
+  height: 100%;
   height: auto;
   display: block;
 }
@@ -91,3 +60,16 @@
 .review-btn-lg {
   color: #1d6ff3;
 }
+
+.location-details {
+  background-color: white!important;
+}
+
+.location-image {
+height: 300px!important;
+}
+
+.review-loc {
+  background-color: white;
+}
+

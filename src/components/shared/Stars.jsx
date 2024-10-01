@@ -1,11 +1,8 @@
-import "./Stars.css"
+import "./Stars.css";
+import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
 
 export const Stars = ({ ratings = [], stars = 0, onClick }) => {
-  const calculateAverageRating = (ratings) => {
-    if (ratings.length === 0) return 0;
-    const totalStars = ratings.reduce((total, rating) => total + rating.stars, 0);
-    return Math.ceil(totalStars / ratings.length);
-  };
+  const averageRating = ratings.length > 0 ? calculateAverageRating(ratings) : stars;
 
   const renderStars = (rating) => {
     const starElements = [];
@@ -23,8 +20,6 @@ export const Stars = ({ ratings = [], stars = 0, onClick }) => {
     }
     return starElements;
   };
-
-  const averageRating = ratings.length > 0 ? calculateAverageRating(ratings) : stars;
 
   return <span>{renderStars(averageRating)}</span>;
 };

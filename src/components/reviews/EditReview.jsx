@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getReviewById, updateRating, deleteRating } from "../../services/locationService.jsx";
-import { Stars } from "../shared/Stars.jsx"; // Reuse Stars component
-import "./RateLocation.css";
+import { getReviewById, updateRating, deleteRating, getAllLocations } from "../../services/locationService.jsx";
+import { Stars } from "../shared/Stars.jsx";
+import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
+import "./ReviewLocation.css";
 
 export const EditReview = ({ currentUser, updateLocations }) => {
   const { locationId, reviewId } = useParams();
   const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
   const [review, setReview] = useState(null);
+  const [location, setLocation] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,7 +19,14 @@ export const EditReview = ({ currentUser, updateLocations }) => {
       setStars(fetchedReview.stars);
       setComment(fetchedReview.comment);
     });
-  }, [reviewId]);
+
+    getAllLocations().then((fetchedLocations) => {
+      const selectedLocation = fetchedLocations.find(
+        (loc) => loc.id === parseInt(locationId)
+      );
+      setLocation(selectedLocation);
+    });
+  }, [reviewId, locationId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,30 +55,45 @@ export const EditReview = ({ currentUser, updateLocations }) => {
     setStars(rating);
   };
 
-  if (!review) return <p>Loading...</p>;
+  if (!review || !location) return <p>Loading...</p>;
 
   return (
-    <div className="card col-4 mx-auto mt-5 pt-5">
-      <h2 className="text-center">Edit Review</h2>
-      
-
-      <form onSubmit={handleSubmit} className="text-center col-11 mx-auto mt-0 p-0">
-      {currentUser && (
-        <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5">
-          <img
-            src={currentUser.imgUrl || "https://via.placeholder.com/40"}
-            alt="User Avatar"
-            className="user-avatar me-2"
-          />
-          <h5 className="text-start">{currentUser.name}</h5>
+    <div className="card edit-review w-100 h-100 col-4 mx-auto mt-5">
+      <div className="location-card d-flex justify-content-start w-100">
+        <img src={location.imgUrl} alt="" className="review-img"/>
+        <div className="ms-3 pt-2">
+          <h2 className="ms-3">{location.name}</h2>
+          <div className="d-flex justify-content-start align-items-center ms-3">
+            <p className="average-rating me-1 amount my-0 fs-6">
+              {calculateAverageRating(location.ratings)}
+            </p>
+            <Stars stars={calculateAverageRating(location.ratings)} />
+            <p className="my-0">({location.ratings.length})</p>
+          </div>
+          <p className="my-0 ms-3">{location.address}</p>
+          <p className="ms-3">
+            {location.city}, {location.state}
+          </p>
         </div>
-      )}
+      </div>
+      {/* Review Form */}
+      <form onSubmit={handleSubmit} className="text-center col-11 mx-auto mt-5 p-0">
+        {currentUser && (
+          <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5">
+            <img
+              src={currentUser.imgUrl || "https://via.placeholder.com/40"}
+              alt="User Avatar"
+              className="user-avatar me-2"
+            />
+            <h5 className="text-start">{currentUser.name}</h5>
+          </div>
+        )}
         <div className="d-flex justify-content-start align-items-center fs-2 mb-2">
           <Stars stars={stars} onClick={handleStarClick} />
         </div>
         <div className="d-block mx-auto w-100">
           <textarea
-            className="new-rating-text-area col-12 mx-0 ps-3 pt-2"
+            className="edit-review-text-area col-12 mx-0 ps-3 pt-2"
             id="comment"
             placeholder="Edit your review"
             value={comment}
