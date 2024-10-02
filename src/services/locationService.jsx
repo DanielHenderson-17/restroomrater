@@ -37,8 +37,6 @@ export const searchGooglePlaces = async (query) => {
 };
 
 
-
-
 export const getAllLocations = () => {
   return apiFetch('/locations?_embed=ratings');
 };

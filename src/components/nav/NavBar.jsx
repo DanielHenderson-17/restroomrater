@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { searchGooglePlaces } from "../../services/locationService";
-import { getAllUsers } from "../../services/userService"; 
+import { getAllUsers } from "../../services/userService";
 import "./NavBar.css";
 
 export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
@@ -10,17 +10,11 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Bounding box around Middle Tennessee
-  // const middleTennesseeBBox = {
-  //   north: 36.5,   // Northern boundary
-  //   south: 35.6,   // Southern boundary
-  //   east: -85.5,   // Eastern boundary
-  //   west: -87.5,   // Western boundary
-  // };
-
   useEffect(() => {
     getAllUsers().then((fetchedUsers) => {
-      const filteredUsers = fetchedUsers.filter(user => user.id !== currentUser?.id);
+      const filteredUsers = fetchedUsers.filter(
+        (user) => user.id !== currentUser?.id
+      );
       setUsers(filteredUsers);
     });
   }, [currentUser]);
@@ -30,11 +24,19 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
     if (e.key === "Enter" && searchTerm.trim().length > 0) {
       try {
         const results = await searchGooglePlaces(searchTerm); // Adjusted to Google Places
-        setSearchResults(results);  // Pass the results to the map to show markers
+        setSearchResults(results); // Pass the results to the map to show markers
       } catch (error) {
         console.error("Error searching Google Places:", error);
       }
     }
+  };
+
+  const handleAccountSwitch = (email) => {
+    // Log out the current user
+    localStorage.removeItem("rr_user");
+
+    // Navigate to the login page with the selected user's email as state
+    navigate("/login", { state: { email } });
   };
 
   return (
@@ -47,14 +49,17 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
             placeholder="Search for locations..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyPress={handleKeyPress}  // Trigger search on Enter key
+            onKeyPress={handleKeyPress} // Trigger search on Enter key
           />
         </div>
 
         <div className="collapse navbar-collapse justify-content-start col-3 ms-4">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <button className="btn border-0 rounded-pill me-2 shadow" onClick={onMyReviewsClick}>
+              <button
+                className="btn border-0 rounded-pill me-2 shadow"
+                onClick={onMyReviewsClick}
+              >
                 <i className="bi bi-person me-1"></i>My Reviews
               </button>
             </li>
@@ -66,7 +71,7 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
             <img
               src={currentUser?.imgUrl || "https://i.imgur.com/8Km9tLL.png"}
               alt="User"
-              className="rounded-circle dropdown-toggle"
+              className="rounded-circle dropdown-toggle shadow"
               width="40"
               height="40"
               id="userDropdown"
@@ -75,19 +80,26 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
               style={{ cursor: "pointer" }}
             />
 
-            <ul className="dropdown-menu dropdown-menu-end main-menu rounded-4" aria-labelledby="userDropdown">
+            <ul
+              className="dropdown-menu dropdown-menu-end main-menu rounded-4"
+              aria-labelledby="userDropdown"
+            >
               <div className="dropdown-header d-flex justify-content-end align-items-center">
-                <p className="small my-0 me-5 fw-bold">{currentUser?.email || "user@example.com"}</p>
-                <button type="button" className="btn-close ms-5 ps-3" aria-label="Close"></button>
+                <p className="small my-0 me-5 fw-bold">
+                  {currentUser?.email || "user@example.com"}
+                </p>
+                <button
+                  type="button"
+                  className="btn-close ms-5 ps-3"
+                  aria-label="Close"
+                ></button>
               </div>
 
               <div className="user-info text-center my-3">
                 <img
                   src={currentUser?.imgUrl || "https://i.imgur.com/8Km9tLL.png"}
                   alt="User"
-                  className="rounded-circle mb-2 avatar-2-img"
-                  width="60"
-                  height="60"
+                  className="rounded-circle mb-2 avatar-2-img shadow"
                 />
                 <p className="mb-0">Hi, {currentUser?.name || "User"}</p>
               </div>
@@ -95,11 +107,16 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
                 <h5 className="pt-2 ps-4 pb-1 fs-6">more accounts</h5>
                 {users.length > 0 ? (
                   users.map((user) => (
-                    <div key={user.id} className="d-flex align-items-center other-account w-100 p-1 ps-3">
+                    <div
+                      key={user.id}
+                      className="d-flex align-items-center other-account w-100 p-1 ps-3"
+                      onClick={() => handleAccountSwitch(user.email)} // Handle account switch
+                      style={{ cursor: "pointer" }}
+                    >
                       <img
                         src={user.imgUrl || "https://i.imgur.com/8Km9tLL.png"}
                         alt="Other user"
-                        className="rounded-circle me-2"
+                        className="rounded-circle me-2 shadow"
                         width="35"
                         height="35"
                       />
@@ -110,9 +127,12 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
                     </div>
                   ))
                 ) : (
-                  <p className="small text-muted text-center">No additional accounts</p>
+                  <p className="small text-muted text-center">
+                    No additional accounts
+                  </p>
                 )}
               </div>
+
               <li>
                 <Link
                   className="dropdown-item text-end pe-4 d-flex justify-content-end align-items-center logout"
@@ -121,7 +141,8 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
                     localStorage.removeItem("rr_user");
                     navigate("/", { replace: true });
                   }}
-                ><i className="bi bi-box-arrow-right me-2 fs-4"></i>
+                >
+                  <i className="bi bi-box-arrow-right me-2 fs-4"></i>
                   <span className="logout-btn">Logout</span>
                 </Link>
               </li>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stars } from "../shared/Stars.jsx";
 import "./ReviewLocation.css";
+import { motion } from "framer-motion";
 
 export const MyReviews = ({ currentUser, locations }) => {
   const navigate = useNavigate();
@@ -17,12 +18,18 @@ export const MyReviews = ({ currentUser, locations }) => {
       setFilteredLocations(userLocations);
 
       const totalRatings = userLocations.reduce((acc, location) => {
-        return acc + location.ratings.filter((rating) => rating.userId === currentUser.id).length;
+        return (
+          acc +
+          location.ratings.filter((rating) => rating.userId === currentUser.id)
+            .length
+        );
       }, 0);
       setTotalReviews(totalRatings);
 
       const totalStars = userLocations.reduce((acc, location) => {
-        const userRating = location.ratings.find((rating) => rating.userId === currentUser.id);
+        const userRating = location.ratings.find(
+          (rating) => rating.userId === currentUser.id
+        );
         return acc + (userRating ? userRating.stars : 0);
       }, 0);
 
@@ -31,35 +38,54 @@ export const MyReviews = ({ currentUser, locations }) => {
     }
   }, [locations, currentUser]);
 
+  const handleCloseClick = () => {
+    navigate("/");
+  };
+
   return (
-    <div className="my-ratings pt-5 w-100">
-      <div className="text-center mb-5 mt-5">
+    <motion.div
+      className="my-ratings pt-5 w-100 h-100 position-relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* Bootstrap Close Button inside the container, top-right */}
+      <button
+        type="button"
+        className="btn-close position-absolute top-0 end-0 m-3"
+        aria-label="Close"
+        onClick={handleCloseClick}
+      ></button>
+
+      <div className="text-center py-5 my-reviews-stats">
         {currentUser && (
           <>
             <img
               src={currentUser.imgUrl || "https://via.placeholder.com/100"}
               alt={currentUser.name}
               className="user-avatar rounded-circle mb-2"
-              style={{ width: "100px" }}
             />
             <h2>{currentUser.name}</h2>
             <div className="mt-3">
               <Stars stars={averageStars} />
               <div>
-                <span>{averageStars.toFixed(1)} ({totalReviews} reviews)</span>
+                <span>
+                  {averageStars.toFixed(1)} ({totalReviews} reviews)
+                </span>
               </div>
             </div>
           </>
         )}
       </div>
-      <div className="">
+
+      <div>
         {filteredLocations.map((location) => {
           const userRating = location.ratings.find(
             (rating) => rating.userId === currentUser.id
           );
           return (
             <div className="col-12 mb-0 mx-auto" key={location.id}>
-              <div className="review-card h-100 col-12">
+              <div className="review-card h-100 col-12 position-relative">
                 <div className="mx-auto">
                   <img
                     src={location.imgUrl || "https://via.placeholder.com/80"}
@@ -101,9 +127,8 @@ export const MyReviews = ({ currentUser, locations }) => {
                           </ul>
                         </div>
                       </div>
-                      <p className="text-start my-0 ms-3">{location.address}</p>
-                      <p className="text-start mt-0 mb-2 ms-3">
-                        {location.city}, {location.state}
+                      <p className="text-start my-0 ms-3">
+                        {location.address.replace(", United States", "")}
                       </p>
                       <div className="rating-stars mb-0 d-flex align-items-center ms-3">
                         <div className="amount me-2 fs-6">
@@ -115,7 +140,9 @@ export const MyReviews = ({ currentUser, locations }) => {
                         </div>
                       </div>
                       <div className="comment ms-3 mt-0">
-                        <p className="text-start mt-0 pe-2">{userRating.comment}</p>
+                        <p className="text-start mt-0 pe-2">
+                          {userRating.comment}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -125,6 +152,6 @@ export const MyReviews = ({ currentUser, locations }) => {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };

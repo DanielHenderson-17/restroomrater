@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { submitRating, getAllLocations } from "../../services/locationService.jsx";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  submitRating,
+  getAllLocations,
+} from "../../services/locationService.jsx";
 import { Stars } from "../shared/Stars.jsx";
 import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
 import "./ReviewLocation.css";
+import { motion } from "framer-motion";
 
 export const ReviewLocation = ({ currentUser, updateLocations }) => {
   const { locationId } = useParams();
   const [location, setLocation] = useState(null);
   const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllLocations().then((fetchedLocations) => {
@@ -50,6 +55,7 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
 
     submitRating(newReview).then((updatedLocations) => {
       updateLocations(updatedLocations);
+      navigate(`/my-reviews`);
     });
   };
 
@@ -57,14 +63,31 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
     setStars(rating);
   };
 
+  const handleCloseClick = () => {
+    navigate("/");
+  };
+
   if (!location) return <p>Loading...</p>;
 
   return (
-    <div className="card review-loc w-100 h-100 col-4 mx-auto mt-5">
+    <motion.div
+      className="card review-loc w-100 h-100 col-4 mx-auto mt-5 position-relative"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      {/* Bootstrap Close Button inside the card, top-right */}
+      <button
+        type="button"
+        className="btn-close position-absolute top-0 end-0 m-3"
+        aria-label="Close"
+        onClick={handleCloseClick}
+      ></button>
+
       {/* Location details */}
       <div className="location-card d-flex justify-content-start w-100">
-        <img src={location.imgUrl} alt="" className="review-img"/>
-        <div className="ms-3 pt-2">
+        <img src={location.imgUrl} alt="" className="review-img" />
+        <div className="ms-1 pt-2">
           <h2 className="ms-3">{location.name}</h2>
           <div className="d-flex justify-content-start align-items-center ms-3">
             <p className="average-rating me-1 amount my-0 fs-6">
@@ -73,9 +96,8 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
             <Stars stars={calculateAverageRating(location.ratings)} />
             <p className="my-0">({location.ratings.length})</p>
           </div>
-          <p className="my-0 ms-3">{location.address}</p>
-          <p className="ms-3">
-            {location.city}, {location.state}
+          <p className="my-0 ms-3 pe-2">
+            {location.address.replace(", United States", "")}
           </p>
         </div>
       </div>
@@ -92,7 +114,10 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
             <h4 className="text-center ms-2">{currentUser.name}</h4>
           </div>
         )}
-        <form onSubmit={handleSubmit} className="text-center mt-0 p-0 mb-0 w-75 mx-auto">
+        <form
+          onSubmit={handleSubmit}
+          className="text-center mt-0 p-0 mb-0 w-75 mx-auto"
+        >
           <div className="d-flex justify-content-center align-items-center fs-1 mb-3">
             <Stars stars={stars} onClick={handleStarClick} />
           </div>
@@ -113,6 +138,6 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
           </div>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -1,12 +1,12 @@
 
 .main-container {
   background-color: rgba(0, 128, 0, 0)!important;
-  height: 100vh !important;
+  height: 99vh !important;
   overflow-y: hidden;
 }
 
 .content-container {
-  margin-top: 75px!important;
+  margin-top: 100px!important;
   background-color: rgba(0, 128, 0, 0)!important;
   overflow-y: scroll;
   width: 50%;

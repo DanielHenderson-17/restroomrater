@@ -53,66 +53,128 @@
     {
       "id": 1,
       "name": "Exxon Mobile",
-      "address": "1234 Cherry Street",
-      "city": "Nashville",
-      "state": "TN",
+      "address": "1234 Cherry Street, Murfreesboro, TN",
       "imgUrl": "https://cdn.winsightmedia.com/platform/files/public/2020-08/background/800x1000/Exxon_Station_1596749449.jpg?VersionId=VtIpuIN2iem0USHQ6cmTnUlktTg8994b.png"
     },
     {
       "id": 2,
       "name": "Shell Gas Station",
-      "address": "5678 Elm Street",
-      "city": "Murfreesboro",
-      "state": "TN",
+      "address": "5678 Elm Street, Murfreesboro, TN",
       "imgUrl": "https://headlight.news/wp-content/uploads/2024/03/Shell-Gas-Station.jpg"
     },
     {
       "id": 3,
       "name": "Pilot Travel Center",
-      "address": "7890 Maple Avenue",
-      "city": "Franklin",
-      "state": "TN",
+      "address": "7890 Maple Avenue, Murfreesboro, TN",
       "imgUrl": "https://pilotflyingj.com/media/pr2nrzrk/greenfield-in-external-storefront.jpg"
     },
     {
       "id": 4,
       "name": "Love's Travel Stop",
-      "address": "2468 Oak Drive",
-      "city": "Nashville",
-      "state": "TN",
+      "address": "2468 Oak Drive, Murfreesboro, TN",
       "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Love%27s_Travel_Stop_%28Bushnell%2C_Fla.%29_%2849417678437%29.jpg"
     },
     {
       "id": 5,
       "name": "BP Gas Station",
-      "address": "1357 Pine Road",
-      "city": "Murfreesboro",
-      "state": "TN",
+      "address": "1357 Pine Road, Murfreesboro, TN",
       "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
     },
     {
       "id": 6,
       "name": "BP Gas Station",
-      "address": "1818 Somewhere Street",
-      "city": "Murfreesboro",
-      "state": "TN",
+      "address": "1818 Somewhere Street, Murfreesboro, TN",
       "imgUrl": "https://miyamotointernational.com/wp-content/uploads/1-55.jpg"
     },
     {
       "id": 7,
       "name": "Shell",
-      "address": "Old Fort Pkwy",
-      "city": "Murfreesboro",
-      "state": "Tennessee",
+      "address": "173 Old Fort Pkwy, Murfreesboro, TN",
       "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png"
     },
     {
       "id": 8,
       "name": "Exxon",
-      "address": "123 Cherry Street",
-      "city": "Boeing",
-      "state": "AL",
+      "address": "123 Cherry Street, Boeing, AL",
       "imgUrl": "https://maps.gstatic.com/tactile/pane/default_geocode-1x.png"
+    },
+    {
+      "id": 9,
+      "name": "Shell",
+      "address": "1411 S Church St, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q73S9IpKxpVJL1KQuu0fJTYJcZYvY3DryrSHgPD7wa-VpYbnQzaRlQrWcfwIdaIP3Gcui8neXcyOZzV6mQEkQqeSTUKWhvW2x_itmWFKvaFeet_pq1iMbEXrIanUzWRYCZT2Uh1s-srRIR-yn4rDRHU0gsw3Ccfm6iBNb4vC-Dgw0bB&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 10,
+      "name": "Exxon",
+      "address": "1849 E Northfield Blvd, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q72hhcvIqTjTmbY0qDCgjs1kF7_QhjcB6ZZUM-YkmcRrvhs-gyOaATSMcLhhDglNqhbDpSl02UwS03Z3ocUgmxAKNXeS6e1PWl8eqnj-MzNRsj5tyC6lkzz-Ab_hJhVf2-IJTW7ZKO2QggBU3Vg_QbmKmj2s9oecKTmVS4JvQCASJru&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 11,
+      "name": "Twice Daily",
+      "address": "110 John R Rice Blvd, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q4Ieh5TvSerjGMYXuPX0SiUvRUREsMTNUqKmRolmSjmOArAQisbU7kK3XXxXIjM7hD6wvN3tvy1PH4ETWXsvbfYx9aaMu3mJR90QbDePY5doGD9ueI4eQeKItGlz7BuFJuuaDU4BnZxtatBNdzXPd64u8e9L1EkgJi0ULWk-w95Z7hH&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 12,
+      "name": "Sam's Club",
+      "address": "125 John R Rice Blvd, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q4Dwp_wTExefS6cIkS3TASVVpcNvW0n2g7y-Nr-tPqJ7GoK9vtGkPjBABAXiXt__lMjlnFJvjMHgRKzzekPIDp9Qpk-Jllg_hORaiA7_PXBsEJPXOkUUx20XORQ6mvE1n8Kh4gn2WK7a7XqP-FGJtMRR5TEkgBmZ1A9l70xD3MSuErE"
+    },
+    {
+      "id": 13,
+      "name": "Walmart Bakery",
+      "address": "2478 New Salem Hwy, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q71ndF7uESwNwxk19tQR7oKHJGDmEPfLwaVn-o5Fu6GGvC6KQfZrgp_dfbrjln9_qZ-FZmUGwgsAbpzHHC6_Gbp7Cy1fmzo4UJJ6jzhA_ULVwFjopQFDENt15MZqTxeQZTJliKZIrilsbrzrdRS2Db-yD3Iu69RNkx8Y0q79WJrXSBZ&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 14,
+      "name": "McDonald's",
+      "address": "2485 S Church St, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q5YtqjzMWa_Vi8oJhyDfNzX5Gr5QFz8tcoRThQsFAeTJ6j-OZ0mYpbuX1T3Z4jyeiBXFrU4RX2IcBzEhofnbmgjiN-Mwdk-8OMCe2fD6dizYMnwn02KN6RRz1uO5nNL5FLdf2k014Clt1JZqZ3TVC01BVvC6m1L2DvxHcz2Ybh1-D9n&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 15,
+      "name": "McDonald's",
+      "address": "1716 S Rutherford Blvd, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q6AMIy12Ubt-Pk3HP2W1AkCsEsFJM-KC4R9gYzkZdB3ohrklaM_2o0BFtXPc3k1hZnwl6zh0FAP-GueYUq_dU6qBpcsClW2qS6KhPDm1RJTE49Qn_XfzV4z1SA1fdxWVe35LHydBYcxyFsTXZ1nRonczPadk8QMNIGXlj2QsTl88qen&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 17,
+      "name": "Sonic Drive-In",
+      "address": "1129 Fortress Blvd, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q7JrgJEXNR5Aq_QlHq9yPzl9104kh1rD99FjOnxIXfpNBLgiQUgnvPbQro8m19dgJXHfFnYdaYGfHT1BdKgbGrDzTxj82TNxq4RHfswcPGT7u5iDxXfzVYJGVw2ObP3UW77RAeHuUIRzhNdWsuOWMacfKar0Z2lcE5AdttsHEwNt6BW&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 18,
+      "name": "Zaxbys Chicken Fingers & Buffalo Wings",
+      "address": "1221 Fortress Blvd, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q5O5ZUBy6YLiUQMnFh6a5sp5S0moyPvq5eoFgNk66BflJSvvcqdbaw5hfbkKvoLeSfV3hEQcnjhuuokqEh8Ff_IyhdrvSNRJj8FNhEK7HExZA2LktskApTie7ELTybfjmH18mNedmQXdTbw0YnGMC2D7q9sqar_CDn22JIV1bmAH8KG&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 19,
+      "name": "Exxon",
+      "address": "7070 Hwy 70 S, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q5pcjzkrUvVp2k70afrdfI1RIQ1TjW1ht8Vu7YhNEYkbUreweRY7pc8hyXRDCnApVAfILgw3LHF4Mr4QPpjnhRki-5bGhPkdtHWDEMBpo-Th9rYt0bo3Ieq22uWk34RAEn8mxuB01jWVlaBUycSy-LnKL-Jzgi_4E5bM-tsTYePzb_y&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 20,
+      "name": "Exxon",
+      "address": "2664 Smith Springs Rd, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q7MTixq51_ZEYYWHasSgBvnaq4eciP-kI5I8f7kkbC_svRUJpS0rC6L1oA8RjG7nI5IqGkU7QZm98Ezyrx3YPQ22VkELCN-Ebt6GRAOP2xjSWy5xgEfDPgXkQh2n1Vkgntjf1G9WzFXAaV7CJndc_9j3ZbVdgrTceOFn19CZF56C3O8&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 21,
+      "name": "Joe's Crab Pot",
+      "address": "621 E Barbour St, Murfreesboro, TN",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q4yvXDpseR3_8t7-cIybWiigvPfZjjcyST-qSmC4V_QEYwt6j4WyYes6bWQs50BSVdMsmtg6fbOcOtcTPRE5YmxdAOI7njA63dzHchD5T5tBf3vefAKarkKPN0USwKnXWcUh9QuvxA-vR-CMnCIScQeSagjmQpFu8BXzogDknwWHfmf&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
+    },
+    {
+      "id": 22,
+      "name": "Joe's Crab Shack",
+      "address": "1219 Celebrity Cir, Myrtle Beach, SC",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q5qH_WOE0edZtZP7lEwrk4m9lWZR15MdpmlZlLCYdguItEMoSK8jc0Rxnt8JJmxhIDi1---ex-3uSGqhVJbgJaXq-My7pb4U8W5O6-M9lewgjLFPh3avSA5ut2emSeYiF0Y_8LwRSGUfgKyiXfmtNHhcYZf94azyTca3XgTsP3pzT-J&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0"
     }
   ],
   "ratings": [
@@ -219,6 +281,189 @@
       "locationId": 8,
       "date": "2024-09-30T16:45:03.276Z",
       "id": 19
+    },
+    {
+      "userId": 2,
+      "comment": "Was very smelly",
+      "stars": 4,
+      "locationId": 9,
+      "id": 20
+    },
+    {
+      "userId": 2,
+      "comment": "Was a great experience!",
+      "stars": 4,
+      "date": "2024-10-02T16:17:46.656Z",
+      "locationId": 10,
+      "id": 21
+    },
+    {
+      "userId": 2,
+      "comment": "Yet another test",
+      "stars": 4,
+      "date": "2024-10-02T16:29:48.826Z",
+      "locationId": 11,
+      "id": 22
+    },
+    {
+      "userId": 2,
+      "comment": "This is a new place I am testing the review",
+      "stars": 4,
+      "date": "2024-10-02T16:35:38.475Z",
+      "locationId": 12,
+      "id": 23
+    },
+    {
+      "userId": 2,
+      "comment": "Mmm delicious",
+      "stars": 4,
+      "date": "2024-10-02T16:50:53.376Z",
+      "locationId": 13,
+      "id": 24
+    },
+    {
+      "userId": 2,
+      "comment": "Lets see if this works",
+      "stars": 4,
+      "date": "2024-10-02T16:57:29.122Z",
+      "locationId": 14,
+      "id": 25
+    },
+    {
+      "userId": 2,
+      "comment": "hi",
+      "stars": 5,
+      "date": "2024-10-02T17:03:13.614Z",
+      "locationId": 15,
+      "id": 26
+    },
+    {
+      "userId": 2,
+      "comment": "test",
+      "stars": 4,
+      "date": "2024-10-02T18:05:48.228Z",
+      "locationId": 17,
+      "id": 28
+    },
+    {
+      "userId": 4,
+      "comment": "Not quite finger lickin good but good nonetheless",
+      "stars": 4,
+      "date": "2024-10-02T18:38:41.468Z",
+      "locationId": 18,
+      "id": 29
+    },
+    {
+      "userId": 4,
+      "comment": "Meh! so so. but also not bad",
+      "stars": 3,
+      "date": "2024-10-02T18:39:24.129Z",
+      "locationId": 19,
+      "id": 30
+    },
+    {
+      "userId": 4,
+      "comment": "Best bathroom I have ever used. Period!",
+      "stars": 5,
+      "date": "2024-10-02T18:40:20.612Z",
+      "locationId": 20,
+      "id": 31
+    },
+    {
+      "userId": 1,
+      "comment": "I love me some crabs. MMMM MMM",
+      "stars": 4,
+      "date": "2024-10-02T18:41:39.397Z",
+      "locationId": 21,
+      "id": 32
+    },
+    {
+      "userId": 1,
+      "comment": "More Crab! Yes!",
+      "stars": 5,
+      "date": "2024-10-02T18:41:57.677Z",
+      "locationId": 22,
+      "id": 33
+    },
+    {
+      "userId": 5,
+      "stars": 1,
+      "comment": "They didn't give me enough sauce!",
+      "locationId": 18,
+      "date": "2024-10-02T18:42:38.383Z",
+      "id": 34
+    },
+    {
+      "userId": 5,
+      "stars": 1,
+      "comment": "They didn't give me enough sauce!",
+      "locationId": 18,
+      "date": "2024-10-02T18:42:42.673Z",
+      "id": 35
+    },
+    {
+      "userId": 5,
+      "stars": 1,
+      "comment": "They didn't give me enough sauce!",
+      "locationId": 18,
+      "date": "2024-10-02T18:42:44.141Z",
+      "id": 36
+    },
+    {
+      "userId": 5,
+      "stars": 2,
+      "comment": "They didn't give me enough sauce!",
+      "locationId": 18,
+      "date": "2024-10-02T18:42:48.890Z",
+      "id": 37
+    },
+    {
+      "userId": 5,
+      "stars": 4,
+      "comment": "I like crab as well!\n",
+      "locationId": 21,
+      "date": "2024-10-02T18:46:16.614Z",
+      "id": 38
+    },
+    {
+      "userId": 5,
+      "stars": 4,
+      "comment": "Yummy in my tummy",
+      "locationId": 22,
+      "date": "2024-10-02T18:46:58.466Z",
+      "id": 39
+    },
+    {
+      "userId": 7,
+      "stars": 3,
+      "comment": "The guy at the counter was nice!",
+      "locationId": 9,
+      "date": "2024-10-02T18:49:32.882Z",
+      "id": 40
+    },
+    {
+      "userId": 6,
+      "stars": 4,
+      "comment": "I mean.. i love this place",
+      "locationId": 20,
+      "date": "2024-10-02T18:51:56.969Z",
+      "id": 41
+    },
+    {
+      "userId": 2,
+      "stars": 4,
+      "comment": "Yay!",
+      "locationId": 1,
+      "date": "2024-10-02T19:42:36.530Z",
+      "id": 42
+    },
+    {
+      "userId": 2,
+      "stars": 4,
+      "comment": "Nice joint",
+      "locationId": 3,
+      "date": "2024-10-02T19:46:36.875Z",
+      "id": 43
     }
   ]
 }

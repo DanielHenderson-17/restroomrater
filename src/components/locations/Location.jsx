@@ -4,18 +4,33 @@ import { getAllLocations } from "../../services/locationService.jsx";
 import { getAllUsers } from "../../services/userService.jsx";
 import { Stars } from "../shared/Stars.jsx";
 import { calculateAverageRating } from "../../utils/calculateAverageRating.js";
+import { motion } from "framer-motion";
 import "./Locations.css";
 
 export const Location = ({ currentUser }) => {
   const { locationId } = useParams();
   const [location, setLocation] = useState(null);
   const [users, setUsers] = useState([]);
+  const [userReviewCounts, setUserReviewCounts] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllLocations().then((locations) =>
-      setLocation(locations.find((loc) => loc.id === +locationId))
-    );
+    getAllLocations().then((locations) => {
+      setLocation(locations.find((loc) => loc.id === +locationId));
+      // Calculate the total reviews for each user
+      const reviewCounts = {};
+      locations.forEach((loc) => {
+        loc.ratings.forEach((rating) => {
+          if (reviewCounts[rating.userId]) {
+            reviewCounts[rating.userId] += 1;
+          } else {
+            reviewCounts[rating.userId] = 1;
+          }
+        });
+      });
+      setUserReviewCounts(reviewCounts);
+    });
+
     getAllUsers().then(setUsers);
   }, [locationId]);
 
@@ -27,11 +42,29 @@ export const Location = ({ currentUser }) => {
     }
   };
 
+  const handleCloseClick = () => {
+    navigate("/");
+  };
+
   if (!location || users.length === 0) return <p>Loading...</p>;
 
   return (
-    <div className="location-details w-100 h-100">
-      <div className="location-card">
+    <motion.div
+      key={locationId}
+      className="location-details w-100 h-100"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="location-card position-relative">
+        {/* Bootstrap Close Button inside the container, top-right */}
+        <button
+          type="button"
+          className="btn-close position-absolute top-0 end-0 m-3"
+          aria-label="Close"
+          onClick={handleCloseClick}
+        ></button>
+
         <img
           src={location.imgUrl || "https://via.placeholder.com/80"}
           alt={location.name}
@@ -46,10 +79,7 @@ export const Location = ({ currentUser }) => {
             <Stars stars={calculateAverageRating(location.ratings)} />
             <p className="my-0">({location.ratings.length})</p>
           </div>
-          <p className="my-0 ms-3">{location.address}</p>
-          <p className="ms-3">
-            {location.city}, {location.state}
-          </p>
+          <p className="my-0 ms-3">{location.address.replace(", United States", "")}</p>
           <div className="d-flex justify-content-center align-items-center w-100 mb-3">
             <button
               className="btn mx-auto py-2 px-4 mt-2 text-center rounded-5 border"
@@ -67,6 +97,8 @@ export const Location = ({ currentUser }) => {
         {location.ratings.map((review) => {
           const user = users.find((user) => user.id === review.userId);
           const isCurrentUser = currentUser && currentUser.id === review.userId;
+          const totalUserReviews = userReviewCounts[review.userId] || 0;
+
           return (
             <div key={review.id} className="review-card pe-4 mt-5 border-bottom pb-4">
               <div className="review-header ms-4 d-flex justify-content-between align-items-center mb-2">
@@ -82,7 +114,7 @@ export const Location = ({ currentUser }) => {
                   />
                   <div>
                     <p className="d-block my-0 fw-bolder">{user ? user.name : "Unknown User"}</p>
-                    <p className="d-block my-0">{calculateAverageRating(location.ratings)} Reviews</p>
+                    <p className="d-block my-0">{totalUserReviews} Reviews</p>
                   </div>
                 </div>
                 {isCurrentUser && (
@@ -125,6 +157,6 @@ export const Location = ({ currentUser }) => {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };

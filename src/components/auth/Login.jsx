@@ -1,19 +1,25 @@
-import { useState } from "react"
-import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
-import "./Login.css"
-import { getUserByEmail } from "../../services/userService.jsx"
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import "./Login.css";
+import { getUserByEmail } from "../../services/userService.jsx";
 
 export const Login = () => {
-  const [email, set] = useState("")
-  const navigate = useNavigate()
+  const location = useLocation();  // Access location to retrieve state
+  const [email, setEmail] = useState(location.state?.email || "");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.email) {
+      setEmail(location.state.email);
+    }
+  }, [location.state]);
 
   const handleLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     getUserByEmail(email).then((foundUsers) => {
       if (foundUsers.length === 1) {
-        const user = foundUsers[0]
+        const user = foundUsers[0];
         localStorage.setItem(
           "rr_user",
           JSON.stringify({
@@ -21,17 +27,17 @@ export const Login = () => {
             email: user.email,
             name: user.name,
             imgUrl: user.imgUrl,
-            totalRatings: user.imgUrl,
-            averageRatings: user.averageRatings
+            totalRatings: user.totalRatings,
+            averageRatings: user.averageRatings,
           })
-        )
+        );
 
-        navigate("/")
+        navigate("/");
       } else {
-        window.alert("Invalid login")
+        window.alert("Invalid login");
       }
-    })
-  }
+    });
+  };
 
   return (
     <main className="container-login mt-5 pt-5">
@@ -43,7 +49,7 @@ export const Login = () => {
               <input
                 type="email"
                 value={email}
-                onChange={(evt) => set(evt.target.value)}
+                onChange={(evt) => setEmail(evt.target.value)}
                 className="form-control border"
                 placeholder="Email address"
                 required
@@ -64,5 +70,5 @@ export const Login = () => {
         <Link to="/register">Not a member yet?</Link>
       </section>
     </main>
-  )
-}
+  );
+};

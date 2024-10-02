@@ -4,7 +4,8 @@ form {
 }
 
 .user-avatar {
-  width: 40px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 }
 
@@ -25,7 +26,7 @@ form {
 }
 
 .my-ratings {
-  background-color: white;
+  background-color: #e9eef6;
   
 }
 
@@ -40,6 +41,7 @@ form {
   outline: 1px solid #1d6ff3;
   color: #1d6ff3;
 }
+
 
 .review-avatar {
   height: 40px!important;
@@ -60,4 +62,26 @@ form {
 
 .edit-review {
   overflow: hidden;
+}
+
+.new-img {
+  object-fit: cover;
+  height: 250px;
+}
+
+.new-comment {
+  height: 200px;
+}
+
+.new-stars span {
+  font-size: 40px!important;
+}
+
+.user-info img {
+  width: 100px;
+  height: 100px;
+}
+
+.my-reviews-stats {
+  background-color: #e9eef6;
 }
