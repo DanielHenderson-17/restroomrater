@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { searchNominatim } from "../../services/locationService.jsx";
-import { getAllUsers } from "../../services/userService.jsx"; 
+import { searchGooglePlaces } from "../../services/locationService";
+import { getAllUsers } from "../../services/userService"; 
 import "./NavBar.css";
 
 export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
@@ -10,30 +10,29 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Define the bounding box around Murfreesboro, TN
-  const murfreesboroBBox = {
-    north: 36.0,
-    south: 35.7,   
-    east: -86.2,   
-    west: -86.6,   
-  };
+  // Bounding box around Middle Tennessee
+  // const middleTennesseeBBox = {
+  //   north: 36.5,   // Northern boundary
+  //   south: 35.6,   // Southern boundary
+  //   east: -85.5,   // Eastern boundary
+  //   west: -87.5,   // Western boundary
+  // };
 
-  // Fetch all users when the component mounts
   useEffect(() => {
-    getAllUsers().then(fetchedUsers => {
+    getAllUsers().then((fetchedUsers) => {
       const filteredUsers = fetchedUsers.filter(user => user.id !== currentUser?.id);
       setUsers(filteredUsers);
     });
   }, [currentUser]);
 
-  // Handle the search input and call Nominatim API on Enter key press
+  // Handle the search input and call Google Places API on Enter key press
   const handleKeyPress = async (e) => {
     if (e.key === "Enter" && searchTerm.trim().length > 0) {
       try {
-        const results = await searchNominatim(searchTerm, murfreesboroBBox);
-        setSearchResults(results);  // Pass the results to the map to show pins
+        const results = await searchGooglePlaces(searchTerm); // Adjusted to Google Places
+        setSearchResults(results);  // Pass the results to the map to show markers
       } catch (error) {
-        console.error("Error searching:", error);
+        console.error("Error searching Google Places:", error);
       }
     }
   };

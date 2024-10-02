@@ -5,10 +5,9 @@ import "./Map.css";
 export const Map = ({ searchResults }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
+  const apiKey = import.meta.env.VITE_GOOGLE_API_KEY; // Correctly accessing the API key
 
   useEffect(() => {
-    const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-
     // Load the Google Maps script and initialize the map
     loadGoogleMaps(apiKey)
       .then((googleMaps) => {
@@ -26,7 +25,7 @@ export const Map = ({ searchResults }) => {
       .catch((err) => {
         console.error("Failed to load Google Maps API", err);
       });
-  }, []);
+  }, [apiKey]);
 
   useEffect(() => {
     if (map && searchResults && searchResults.length > 0) {
@@ -34,14 +33,41 @@ export const Map = ({ searchResults }) => {
       const markers = [];
 
       searchResults.forEach((result) => {
-        const lat = parseFloat(result.lat);
-        const lon = parseFloat(result.lon);
+        const lat = parseFloat(result.geometry.location.lat);
+        const lon = parseFloat(result.geometry.location.lng);
 
         // Create a marker for each search result
         const marker = new window.google.maps.Marker({
           position: { lat, lng: lon },
           map,
           title: result.name || result.display_name || "Unnamed location",
+        });
+
+        // Retrieve the first photo if available
+        let photoUrl = '';
+        if (result.photos && result.photos.length > 0) {
+          const photoReference = result.photos[0].photo_reference;
+          photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${apiKey}`;
+        }
+
+        // Set up the infowindow with the photo (if available), name, and address
+        const infowindow = new window.google.maps.InfoWindow({
+          content: `
+            <div style="text-align: center;">
+              ${photoUrl ? `<img src="${photoUrl}" alt="${result.name}" style="width:100%; max-height:150px; object-fit:cover; margin-bottom:10px;">` : ''}
+              <h4>${result.name}</h4>
+              <p>${result.formatted_address}</p>
+            </div>
+          `,
+        });
+
+        // Add a click listener to the marker
+        marker.addListener("click", () => {
+          infowindow.open({
+            anchor: marker,
+            map,
+            shouldFocus: false,
+          });
         });
 
         markers.push(marker);
@@ -54,7 +80,7 @@ export const Map = ({ searchResults }) => {
         map.fitBounds(bounds);
       }
     }
-  }, [map, searchResults]);
+  }, [map, searchResults, apiKey]);
 
   return <div ref={mapRef} className="map-container" />;
 };

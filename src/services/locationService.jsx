@@ -15,22 +15,24 @@ const apiFetch = (endpoint, method = 'GET', data = null) => {
   });
 };
 
-export const searchNominatim = async (query) => {
-  const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=5`;
-  
-  console.log("Making API request to:", url);
-
+export const searchGooglePlaces = async (query) => {
   try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error('Failed to fetch search results');
+    const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+
+    // Use the local CORS Anywhere proxy
+    const proxyUrl = "http://localhost:8080/"; // Local CORS proxy URL
+    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${apiKey}`;
+
+    const response = await fetch(proxyUrl + url); // Make the request through the local CORS proxy
+    if (!response.ok) {
+      throw new Error("Failed to fetch from Google Places API");
     }
-    const data = await res.json();
-    console.log("API Response:", data); // Log the response
-    return data;
+
+    const data = await response.json();
+    return data.results;
   } catch (error) {
-    console.error("Error during API request:", error);
-    throw error;
+    console.error("Error fetching data from Google Places API:", error);
+    return [];
   }
 };
 
