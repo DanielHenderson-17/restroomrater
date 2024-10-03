@@ -17,7 +17,6 @@ export const Location = ({ currentUser }) => {
   useEffect(() => {
     getAllLocations().then((locations) => {
       setLocation(locations.find((loc) => loc.id === +locationId));
-      // Calculate the total reviews for each user
       const reviewCounts = {};
       locations.forEach((loc) => {
         loc.ratings.forEach((rating) => {
@@ -57,7 +56,6 @@ export const Location = ({ currentUser }) => {
       transition={{ duration: 0.3 }}
     >
       <div className="location-card position-relative">
-        {/* Bootstrap Close Button inside the container, top-right */}
         <button
           type="button"
           className="btn-close position-absolute top-0 end-0 m-3"
@@ -79,8 +77,10 @@ export const Location = ({ currentUser }) => {
             <Stars stars={calculateAverageRating(location.ratings)} />
             <p className="my-0">({location.ratings.length})</p>
           </div>
-          <p className="my-0 ms-3">{location.address.replace(", United States", "")}</p>
-          <div className="d-flex justify-content-center align-items-center w-100 mb-3">
+          <p className="my-0 ms-3">
+            {location.address.replace(", United States", "")}
+          </p>
+          <div className="d-flex justify-content-center align-items-center w-100 mb-3 mt-3">
             <button
               className="btn mx-auto py-2 px-4 mt-2 text-center rounded-5 border"
               onClick={handleWriteReviewClick}
@@ -91,71 +91,91 @@ export const Location = ({ currentUser }) => {
           </div>
         </div>
       </div>
-
-      {/* Display reviews */}
       <div className="reviews">
-        {location.ratings.map((review) => {
-          const user = users.find((user) => user.id === review.userId);
-          const isCurrentUser = currentUser && currentUser.id === review.userId;
-          const totalUserReviews = userReviewCounts[review.userId] || 0;
+        {location.ratings.length > 0 ? (
+          location.ratings.map((review) => {
+            const user = users.find((user) => user.id === review.userId);
+            const isCurrentUser =
+              currentUser && currentUser.id === review.userId;
+            const totalUserReviews = userReviewCounts[review.userId] || 0;
 
-          return (
-            <div key={review.id} className="review-card pe-4 mt-5 border-bottom pb-4">
-              <div className="review-header ms-4 d-flex justify-content-between align-items-center mb-2">
-                <div className="d-flex align-items-center">
-                  <img
-                    src={
-                      user && user.imgUrl
-                        ? user.imgUrl
-                        : "https://via.placeholder.com/40"
-                    }
-                    alt="user avatar"
-                    className="review-avatar rounded-circle me-2"
-                  />
-                  <div>
-                    <p className="d-block my-0 fw-bolder">{user ? user.name : "Unknown User"}</p>
-                    <p className="d-block my-0">{totalUserReviews} Reviews</p>
-                  </div>
-                </div>
-                {isCurrentUser && (
-                  <div className="dropdown ms-auto">
-                    <div
-                      className="dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <i className="bi bi-three-dots-vertical"></i>
+            return (
+              <div
+                key={review.id}
+                className="review-card pe-4 mt-5 border-bottom pb-4"
+              >
+                <div className="review-header ms-4 d-flex justify-content-between align-items-center mb-2">
+                  <div className="d-flex align-items-center">
+                    <img
+                      src={
+                        user && user.imgUrl
+                          ? user.imgUrl
+                          : "https://via.placeholder.com/40"
+                      }
+                      alt="user avatar"
+                      className="review-avatar rounded-circle me-2"
+                    />
+                    <div>
+                      <p className="d-block my-0 fw-bolder">
+                        {user ? user.name : "Unknown User"}
+                      </p>
+                      <p className="d-block my-0">{totalUserReviews} Reviews</p>
                     </div>
-                    <ul
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <li>
-                        <button
-                          className="dropdown-item"
-                          onClick={() => navigate(`/locations/${locationId}/edit/${review.id}`)}
-                        >
-                          Edit
-                        </button>
-                      </li>
-                    </ul>
                   </div>
-                )}
+                  {isCurrentUser && (
+                    <div className="dropdown ms-auto">
+                      <div
+                        className="dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i className="bi bi-three-dots-vertical"></i>
+                      </div>
+                      <ul
+                        className="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <li>
+                          <button
+                            className="dropdown-item"
+                            onClick={() =>
+                              navigate(
+                                `/locations/${locationId}/edit/${review.id}`
+                              )
+                            }
+                          >
+                            Edit
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                <div className="review-rating-date ms-4 d-flex justify-content-start mb-2">
+                  <span className="rating-stars fs-5">
+                    <Stars stars={review.stars} />
+                  </span>
+                  <span className="review-date align-self-center ms-2">
+                    {new Date(review.date).toLocaleDateString()}
+                  </span>
+                </div>
+                <div className="review-comment ms-4">
+                  {review.comment}
+                  {review.edited && (
+                    <small className="text-muted ms-2">(edited)</small>
+                  )}
+                </div>
               </div>
-              <div className="review-rating-date ms-4 d-flex justify-content-start mb-2">
-                <span className="rating-stars fs-5">
-                  <Stars stars={review.stars} />
-                </span>
-                <span className="review-date align-self-center ms-2">
-                  {new Date(review.date).toLocaleDateString()}
-                </span>
-              </div>
-              <p className="review-comment ms-4">{review.comment}</p>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <p className="no-reviews-message mt-5 text-center p-5 fs-5">
+            There are no reviews for this location yet. Consider writing a
+            review.
+          </p>
+        )}
       </div>
     </motion.div>
   );

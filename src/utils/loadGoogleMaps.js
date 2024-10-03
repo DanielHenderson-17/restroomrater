@@ -1,4 +1,3 @@
-// src/utils/loadGoogleMaps.js
 export const loadGoogleMaps = (apiKey) => {
     return new Promise((resolve, reject) => {
       if (window.google && window.google.maps) {

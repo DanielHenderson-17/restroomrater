@@ -36,24 +36,26 @@ export const EditReview = ({ currentUser, updateLocations }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     const updatedReview = {
       ...review,
       stars: stars,
       comment: comment,
       date: new Date().toISOString(),
+      edited: true,
     };
-
+  
     updateRating(review.id, updatedReview).then((updatedLocations) => {
       updateLocations(updatedLocations);
       navigate(`/locations/${locationId}`);
     });
   };
+  
 
   const handleDelete = () => {
     deleteRating(review.id).then((updatedLocations) => {
       updateLocations(updatedLocations);
-      navigate(`/my-reviews`);
+      navigate(`/locations/${locationId}`);
     });
   };
 
@@ -74,14 +76,12 @@ export const EditReview = ({ currentUser, updateLocations }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Bootstrap Close Button inside the card, top-right */}
       <button
         type="button"
         className="btn-close position-absolute top-0 end-0 m-3"
         aria-label="Close"
         onClick={handleCloseClick}
       ></button>
-
       <div className="location-card d-flex justify-content-start w-100">
         <img src={location.imgUrl} alt="" className="review-img" />
         <div className="ms-1 pt-2">
@@ -98,8 +98,6 @@ export const EditReview = ({ currentUser, updateLocations }) => {
           </p>
         </div>
       </div>
-      
-      {/* Review Form */}
       <form
         onSubmit={handleSubmit}
         className="text-center col-11 mx-auto mt-5 p-0"

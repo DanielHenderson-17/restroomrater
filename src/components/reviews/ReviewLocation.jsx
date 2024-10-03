@@ -55,7 +55,7 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
 
     submitRating(newReview).then((updatedLocations) => {
       updateLocations(updatedLocations);
-      navigate(`/my-reviews`);
+      navigate(`/locations/${locationId}`);
     });
   };
 
@@ -76,15 +76,12 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Bootstrap Close Button inside the card, top-right */}
       <button
         type="button"
         className="btn-close position-absolute top-0 end-0 m-3"
         aria-label="Close"
         onClick={handleCloseClick}
       ></button>
-
-      {/* Location details */}
       <div className="location-card d-flex justify-content-start w-100">
         <img src={location.imgUrl} alt="" className="review-img" />
         <div className="ms-1 pt-2">
@@ -101,8 +98,6 @@ export const ReviewLocation = ({ currentUser, updateLocations }) => {
           </p>
         </div>
       </div>
-
-      {/* Review form */}
       <div className="mx-auto mt-5 w-100">
         {currentUser && (
           <div className="user-info text-center mb-0 d-flex justify-content-start align-items-center mt-5 text-left w-75 ms-3">

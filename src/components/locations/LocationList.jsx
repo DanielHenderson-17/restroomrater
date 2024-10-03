@@ -17,7 +17,7 @@ export const LocationList = ({ locations, searchTerm, currentUser }) => {
   }, [searchTerm, locations]);
 
   const handleCardClick = (location) => {
-    navigate(`/locations/${location.id}`);  // Navigate to the location's detail page
+    navigate(`/locations/${location.id}`);
   };
 
   return (
@@ -30,7 +30,10 @@ export const LocationList = ({ locations, searchTerm, currentUser }) => {
           );
 
           return (
-            <div
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
               key={location.id}
               className="location-card h-100 py-2 d-flex justify-content-between align-items-center"
               onClick={() => handleCardClick(location)}
@@ -48,12 +51,11 @@ export const LocationList = ({ locations, searchTerm, currentUser }) => {
                 </div>
                 <p>{location.address}</p>
               </div>
-
-              {/* Conditionally render the check-circle or pencil-square icon */}
               {userAlreadyReviewed ? (
-                <div className="btn rate-btn review-btn me-4 border d-flex justify-content-center align-items-center"
-                onClick={() => handleCardClick(location)}
-                > 
+                <div
+                  className="btn rate-btn review-btn me-4 border d-flex justify-content-center align-items-center"
+                  onClick={() => handleCardClick(location)}
+                >
                   <i className="bi bi-check-square"></i>
                 </div>
               ) : (
@@ -64,7 +66,7 @@ export const LocationList = ({ locations, searchTerm, currentUser }) => {
                   <i className="bi bi-pencil-square"></i>
                 </div>
               )}
-            </div>
+            </motion.div>
           );
         })}
       </div>

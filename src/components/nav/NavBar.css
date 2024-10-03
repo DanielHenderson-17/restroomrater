@@ -62,3 +62,7 @@
   cursor: default;
   background-color: transparent;
 }
+
+.nav-search {
+  width: 95%;
+}

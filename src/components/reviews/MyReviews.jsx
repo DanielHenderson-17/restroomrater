@@ -49,7 +49,6 @@ export const MyReviews = ({ currentUser, locations }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Bootstrap Close Button inside the container, top-right */}
       <button
         type="button"
         className="btn-close position-absolute top-0 end-0 m-3"

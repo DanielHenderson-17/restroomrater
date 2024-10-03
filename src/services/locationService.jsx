@@ -19,11 +19,10 @@ export const searchGooglePlaces = async (query) => {
   try {
     const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-    // Use the local CORS Anywhere proxy
-    const proxyUrl = "http://localhost:8080/"; // Local CORS proxy URL
+    const proxyUrl = "http://localhost:8080/";
     const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${apiKey}`;
 
-    const response = await fetch(proxyUrl + url); // Make the request through the local CORS proxy
+    const response = await fetch(proxyUrl + url);
     if (!response.ok) {
       throw new Error("Failed to fetch from Google Places API");
     }

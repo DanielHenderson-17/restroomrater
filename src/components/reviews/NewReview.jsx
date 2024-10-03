@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; 
+import { useNavigate, useLocation } from "react-router-dom";
 import { addLocationAndRating } from "../../services/locationService.jsx";
 import { Stars } from "../shared/Stars.jsx";
 import { motion } from "framer-motion";
@@ -56,7 +56,6 @@ export const NewReview = ({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Bootstrap Close Button inside the form container */}
       <button
         type="button"
         className="btn-close position-absolute top-0 end-0 m-3"
@@ -86,7 +85,11 @@ export const NewReview = ({
         onChange={(e) => setComment(e.target.value)}
       />
       <div className="d-flex justify-content-end me-2 mt-3">
-        <button type="button" className="btn btn-danger" onClick={handleCloseClick}>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={handleCloseClick}
+        >
           Cancel
         </button>
         <button type="submit" className="btn btn-success ms-3 me-5">

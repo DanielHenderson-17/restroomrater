@@ -19,12 +19,11 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
     });
   }, [currentUser]);
 
-  // Handle the search input and call Google Places API on Enter key press
   const handleKeyPress = async (e) => {
     if (e.key === "Enter" && searchTerm.trim().length > 0) {
       try {
-        const results = await searchGooglePlaces(searchTerm); // Adjusted to Google Places
-        setSearchResults(results); // Pass the results to the map to show markers
+        const results = await searchGooglePlaces(searchTerm);
+        setSearchResults(results);
       } catch (error) {
         console.error("Error searching Google Places:", error);
       }
@@ -32,10 +31,9 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
   };
 
   const handleAccountSwitch = (email) => {
-    // Log out the current user
+
     localStorage.removeItem("rr_user");
 
-    // Navigate to the login page with the selected user's email as state
     navigate("/login", { state: { email } });
   };
 
@@ -45,11 +43,11 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
         <div className="col-3">
           <input
             type="text"
-            className="form-control rounded-pill shadow"
+            className="form-control rounded-pill shadow ms-4 nav-search"
             placeholder="Search for locations..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onKeyPress={handleKeyPress} // Trigger search on Enter key
+            onKeyPress={handleKeyPress}
           />
         </div>
 
@@ -110,7 +108,7 @@ export const NavBar = ({ onMyReviewsClick, setSearchResults, currentUser }) => {
                     <div
                       key={user.id}
                       className="d-flex align-items-center other-account w-100 p-1 ps-3"
-                      onClick={() => handleAccountSwitch(user.email)} // Handle account switch
+                      onClick={() => handleAccountSwitch(user.email)}
                       style={{ cursor: "pointer" }}
                     >
                       <img

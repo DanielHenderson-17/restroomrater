@@ -5,18 +5,17 @@ import "./Map.css";
 
 export const Map = ({ searchResults }) => {
   const mapRef = useRef(null);
-  const markersRef = useRef([]);  // Ref to store the markers
+  const markersRef = useRef([]); 
   const [map, setMap] = useState(null);
   const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
   const navigate = useNavigate();
 
-  // Function to clear all markers
+
   const clearMarkers = () => {
-    markersRef.current.forEach(marker => marker.setMap(null)); // Remove markers from the map
-    markersRef.current = [];  // Reset the markers array
+    markersRef.current.forEach(marker => marker.setMap(null));
+    markersRef.current = [];
   };
 
-  // Function to perform reverse geocoding
   const reverseGeocodeLatLng = async (lat, lng) => {
     const response = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
@@ -48,7 +47,7 @@ export const Map = ({ searchResults }) => {
     loadGoogleMaps(apiKey)
       .then((googleMaps) => {
         const initializedMap = new googleMaps.Map(mapRef.current, {
-          center: { lat: 35.8456, lng: -86.3903 }, // Default center
+          center: { lat: 35.8456, lng: -86.3903 }, // Default center Murfreesboro, TN
           zoom: 12,
           mapTypeControlOptions: {
             style: googleMaps.MapTypeControlStyle.HORIZONTAL_BAR,
@@ -64,7 +63,7 @@ export const Map = ({ searchResults }) => {
 
   useEffect(() => {
     if (map) {
-      // Clear existing markers before adding new ones
+
       clearMarkers();
 
       if (searchResults && searchResults.length > 0) {
@@ -96,10 +95,8 @@ export const Map = ({ searchResults }) => {
             });
           });
 
-          markersRef.current.push(marker);  // Store marker in the ref
+          markersRef.current.push(marker);
         });
-
-        // Optionally fit map to markers
         if (markersRef.current.length > 0) {
           const bounds = new window.google.maps.LatLngBounds();
           markersRef.current.forEach((marker) => bounds.extend(marker.getPosition()));
