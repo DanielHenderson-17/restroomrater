@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { createUser, getUserByEmail } from "../../services/userService.jsx";
+import { storage } from "../../../firebaseConfig.js";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-export const Register = (props) => {
+export const Register = () => {
   const [customer, setCustomer] = useState({
     email: "",
     name: "",
@@ -11,37 +13,47 @@ export const Register = (props) => {
     totalRatings: 0,
     averageRatings: 0,
   });
+  const [imageFile, setImageFile] = useState(null);
   let navigate = useNavigate();
 
-  const registerNewUser = () => {
-    createUser(customer).then((createdUser) => {
-      if (createdUser.hasOwnProperty("id")) {
-        localStorage.setItem(
-          "rr_user",
-          JSON.stringify({
-            id: createdUser.id,
-            email: createdUser.email,
-            name: createdUser.name,
-            imgUrl: createdUser.imgUrl,
-            totalRatings: createdUser.imgUrl,
-            averageRatings: createdUser.averageRatings,
-          })
-        );
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]);
+  };
 
-        navigate("/");
-      }
-    });
+  const uploadImageAndRegister = async () => {
+    if (imageFile) {
+      const imageRef = ref(storage, `avatars/${imageFile.name}`);
+      await uploadBytes(imageRef, imageFile);
+      const imgUrl = await getDownloadURL(imageRef);
+      const updatedCustomer = { ...customer, imgUrl };
+      createUser(updatedCustomer).then((createdUser) => {
+        if (createdUser.hasOwnProperty("id")) {
+          localStorage.setItem(
+            "rr_user",
+            JSON.stringify({
+              id: createdUser.id,
+              email: createdUser.email,
+              name: createdUser.name,
+              imgUrl: createdUser.imgUrl,
+              totalRatings: createdUser.totalRatings,
+              averageRatings: createdUser.averageRatings,
+            })
+          );
+          navigate("/");
+        }
+      });
+    } else {
+      window.alert("Please upload an image");
+    }
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
     getUserByEmail(customer.email).then((response) => {
       if (response.length > 0) {
-        // Duplicate email. No good.
         window.alert("Account with that email address already exists");
       } else {
-        // Good email, create user.
-        registerNewUser();
+        uploadImageAndRegister();
       }
     });
   };
@@ -84,13 +96,10 @@ export const Register = (props) => {
         <fieldset>
           <div className="form-group">
             <input
-              onChange={updateCustomer}
-              type="text"
-              id="imgUrl"
-              className="form-control  border"
-              placeholder="Avatar URL"
+              type="file"
+              onChange={handleFileChange}
+              className="form-control border"
               required
-              autoFocus
             />
           </div>
         </fieldset>
