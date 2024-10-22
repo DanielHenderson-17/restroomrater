@@ -1,10 +1,19 @@
-# React + Vite
-json-server -p 8088 database.json
+##Restroom Rater
+Restroom Rater is a solo capstone project designed to allow users to rate restrooms using Google Maps and Places API for location-based services. This project integrates several technologies to provide users with a seamless experience for discovering, rating, and sharing restrooms.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##Features
+* Location-Based Ratings: Integrated Google Maps API with CORS Anywhere to provide real-time location functionality for restroom ratings.
+* Image Uploads: Utilizes Firebase for image uploads in user registration, enabling users to submit photos of restrooms as part of their reviews.
 
-Currently, two official plugins are available:
+##Tools & Technologies
+* React.js: Framework for building a dynamic and responsive user interface.
+* Google Maps & Places API: Provides location services for mapping restroom locations.
+* Firebase: Used for image uploads and user authentication.
+* CORS Anywhere: Facilitates API requests across different origins securely.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# restroomrater
+##Skills & Technologies
+* React.js
+* JavaScript
+* Google Maps API
+* Firebase
+* JSON Server

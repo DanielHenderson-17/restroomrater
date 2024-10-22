@@ -55,6 +55,14 @@
       "totalRatings": 0,
       "averageRatings": 0,
       "id": 9
+    },
+    {
+      "email": "dan@theinternet.com",
+      "name": "dan",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/restroom-rater-43186.appspot.com/o/avatars%2Favatar.jfif?alt=media&token=99b01ff6-81d5-4017-8eaf-24188eb22459",
+      "totalRatings": 0,
+      "averageRatings": 0,
+      "id": 10
     }
   ],
   "locations": [
@@ -207,6 +215,12 @@
       "address": "4305 Hixson Pike, Chattanooga, TN 37415",
       "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AXCi2Q6BHDg0KADvC9UqqavTQBLZsjkGxNckmvVKhL_RfzxGcApqMLaZGa_rpaXeCqdbCPG3MFcWUaoGHvhwVIaJe3ImOUykIqxBV-xBm_uiBvd4w4yhojPblpHziNF6kC6xqG1j6pwZLoUjlYks7RRLLX0ueXW3KXd_MQPNa6vHveEiGKhX&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0",
       "id": 26
+    },
+    {
+      "name": "MAPCO",
+      "address": "5001 Linbar Dr, Nashville, TN 37211",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOV6p4Q4d3WbHo3dS4kX9kWlAPSzqWci2JaGFwYiKxT4uMNpAWKe61Rq8QXcxLOQJxwxBRJgeRYgaplMYCydaHIGl_z7Cwi33568ZsY17w6z9SVGcILW_-swKgqO3ex5jbIq6rvIQaBEtD3W9Ky_ywRHUd-NPK3UwXU3xp1Wsblah5E&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0",
+      "id": 27
     }
   ],
   "ratings": [
@@ -508,12 +522,12 @@
     },
     {
       "userId": 2,
-      "stars": 4,
-      "comment": "Yay!",
+      "stars": 5,
+      "comment": "Yay! more stuff!",
       "locationId": 1,
-      "date": "2024-10-02T19:42:36.530Z",
+      "date": "2024-10-21T15:41:05.331Z",
       "id": 42,
-      "edited": false
+      "edited": true
     },
     {
       "userId": 2,
@@ -577,6 +591,14 @@
       "locationId": 26,
       "id": 49,
       "edited": false
+    },
+    {
+      "userId": 10,
+      "comment": "Bathroom was clean!",
+      "stars": 4,
+      "date": "2024-10-21T15:40:33.312Z",
+      "locationId": 27,
+      "id": 50
     }
   ]
 }

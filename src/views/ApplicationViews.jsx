@@ -88,7 +88,7 @@ export const ApplicationViews = () => {
       />
       <SideBar locations={locations} onCityClick={onCityClick} />
       <LocationList
-        locations={filteredLocations} // Pass the filtered locations here
+        locations={filteredLocations}
         searchTerm={searchTerm}
         currentUser={currentUser}
       />
