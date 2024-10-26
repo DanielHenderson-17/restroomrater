@@ -15,25 +15,45 @@ const apiFetch = (endpoint, method = 'GET', data = null) => {
   });
 };
 
+
 export const searchGooglePlaces = async (query) => {
   try {
-    const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+    const response = await fetch("/.netlify/functions/searchPlaces", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query }),
+    });
 
-    const proxyUrl = "http://localhost:8080/";
-    const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${apiKey}`;
-
-    const response = await fetch(proxyUrl + url);
     if (!response.ok) {
       throw new Error("Failed to fetch from Google Places API");
     }
 
     const data = await response.json();
-    return data.results;
+    return data;
   } catch (error) {
     console.error("Error fetching data from Google Places API:", error);
     return [];
   }
 };
+// export const searchGooglePlaces = async (query) => {
+//   try {
+//     const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+
+//     const proxyUrl = "http://localhost:8080/";
+//     const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${apiKey}`;
+
+//     const response = await fetch(proxyUrl + url);
+//     if (!response.ok) {
+//       throw new Error("Failed to fetch from Google Places API");
+//     }
+
+//     const data = await response.json();
+//     return data.results;
+//   } catch (error) {
+//     console.error("Error fetching data from Google Places API:", error);
+//     return [];
+//   }
+// };
 
 
 export const getAllLocations = () => {

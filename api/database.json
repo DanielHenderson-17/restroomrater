@@ -7,13 +7,13 @@
       "id": 1
     },
     {
-      "email": "djhindu17@gmail.com",
+      "email": "daniel@gmail.com",
       "name": "Daniel Henderson",
       "imgUrl": "https://danielhenderson17.com/img/Portrait.png",
       "id": 2
     },
     {
-      "email": "julieannwest10@gmail.com",
+      "email": "julie@gmail.com",
       "name": "ZombieLynx Gaming",
       "imgUrl": "https://musicart.xboxlive.com/7/4d4d6500-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080",
       "id": 3
@@ -49,7 +49,7 @@
       "id": 8
     },
     {
-      "email": "djhindu17@aol.com",
+      "email": "zlgtest@gmail.com",
       "name": "ZLGTest",
       "imgUrl": "https://firebasestorage.googleapis.com/v0/b/restroom-rater-43186.appspot.com/o/avatars%2FScreenshot%202023-11-04%20154608.png?alt=media&token=2cf6727d-b873-4d29-b447-f855aeda98a3",
       "totalRatings": 0,
@@ -221,6 +221,18 @@
       "address": "5001 Linbar Dr, Nashville, TN 37211",
       "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DOV6p4Q4d3WbHo3dS4kX9kWlAPSzqWci2JaGFwYiKxT4uMNpAWKe61Rq8QXcxLOQJxwxBRJgeRYgaplMYCydaHIGl_z7Cwi33568ZsY17w6z9SVGcILW_-swKgqO3ex5jbIq6rvIQaBEtD3W9Ky_ywRHUd-NPK3UwXU3xp1Wsblah5E&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0",
       "id": 27
+    },
+    {
+      "name": "McDonald's",
+      "address": "1436 N Rutherford Blvd, Murfreesboro, TN 37130",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DN_yCwPFmzKJjKQYU9ZsUWE-UVRWmL4MassnYuwPwJ1QU7kyXjFMk51i8DtLTRMntG13Fe_NNYfJ_3sH8bVp40wAkGJjz-k6vnNNKYpPHkUNzgtSb01eMzIW6HoM30Q_M10FwaA98CgopmmJW7QBYQFmAZekYSHMDMwBjUg7nG6NZro&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0",
+      "id": 28
+    },
+    {
+      "name": "The Home Depot",
+      "address": "5010 Old Hickory Blvd, Hermitage, TN 37076",
+      "imgUrl": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=AdCG2DPDNXddb2wZOulHetcr1Qs_9a6trggvS8eBzSrzYRDVgc49FbvMMdoZgfIdDO65PGv6-u-oh48gzNeuQZ9RjBgPn0GwoNMMmW1_ff6SutJbnUII_8Cw_Y2EliueKi86Yo-z7QuNZPMz1JgjmwYF5hUBLSV3tJ4y1q74Cf2OIwc8fKU6&key=AIzaSyAU-qTrKb44Kvtf5JFvEd2oicbapJ2HHX0",
+      "id": 29
     }
   ],
   "ratings": [
@@ -599,6 +611,22 @@
       "date": "2024-10-21T15:40:33.312Z",
       "locationId": 27,
       "id": 50
+    },
+    {
+      "userId": 2,
+      "comment": "test",
+      "stars": 4,
+      "date": "2024-10-26T03:57:17.494Z",
+      "locationId": 28,
+      "id": 51
+    },
+    {
+      "userId": 2,
+      "comment": "test",
+      "stars": 4,
+      "date": "2024-10-26T04:29:03.401Z",
+      "locationId": 29,
+      "id": 52
     }
   ]
 }
