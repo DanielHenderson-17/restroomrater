@@ -1,4 +1,5 @@
-const baseUrl = 'http://localhost:8088';
+// const baseUrl = 'http://localhost:8088';
+const baseUrl = "https://restroom-rater-api.onrender.com";
 
 const apiFetch = (endpoint, method = 'GET', data = null) => {
   return fetch(`${baseUrl}${endpoint}`, {

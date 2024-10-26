@@ -1,13 +1,13 @@
 export const getAllUsers = () => {
-  return fetch('http://localhost:8088/users').then(res => res.json());
+  return fetch('https://restroom-rater-api.onrender.com/users').then(res => res.json());
 };
 
 export const getUserByEmail = (email) => {
-  return fetch(`http://localhost:8088/users?email=${email}`).then(res => res.json());
+  return fetch(`https://restroom-rater-api.onrender.com/users?email=${email}`).then(res => res.json());
 };
 
 export const createUser = (customer) => {
-  return fetch("http://localhost:8088/users", {
+  return fetch("https://restroom-rater-api.onrender.com/users", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
