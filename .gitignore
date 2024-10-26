@@ -24,7 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-firebaseConfig.js
 
 # Local Netlify folder
 .netlify
