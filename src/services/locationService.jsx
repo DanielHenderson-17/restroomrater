@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 const baseUrl = "https://restroom-rater-api.onrender.com";
 
 const apiFetch = (endpoint, method = 'GET', data = null) => {

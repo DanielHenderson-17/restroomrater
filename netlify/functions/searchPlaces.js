@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 export const handler = async (event) => {
   try {
     const { query } = JSON.parse(event.body);
@@ -14,7 +12,7 @@ export const handler = async (event) => {
 
     const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${encodeURIComponent(query)}&key=${apiKey}`;
 
-    const response = await fetch(url, { timeout: 10000 }); // 10-second timeout
+    const response = await fetch(url);
 
     if (!response.ok) {
       console.error(`Google API response error: ${response.statusText}`);
