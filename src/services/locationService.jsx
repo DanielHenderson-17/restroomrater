@@ -1,4 +1,5 @@
-// const baseUrl = 'http://localhost:8088';
+import fetch from "node-fetch";
+
 const baseUrl = "https://restroom-rater-api.onrender.com";
 
 const apiFetch = (endpoint, method = 'GET', data = null) => {
@@ -10,22 +11,23 @@ const apiFetch = (endpoint, method = 'GET', data = null) => {
     body: data ? JSON.stringify(data) : null,
   }).then(res => {
     if (!res.ok) {
+      console.error(`Failed to fetch from ${endpoint}: ${res.statusText}`);
       throw new Error('Failed to fetch');
     }
     return res.json();
   });
 };
 
-
 export const searchGooglePlaces = async (query) => {
   try {
-    const response = await fetch("/.netlify/functions/searchPlaces", {
+    const response = await fetch("https://restroom-rater.netlify.app/.netlify/functions/searchPlaces", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query }),
     });
 
     if (!response.ok) {
+      console.error(`Error in searchGooglePlaces: ${response.statusText}`);
       throw new Error("Failed to fetch from Google Places API");
     }
 
@@ -36,31 +38,25 @@ export const searchGooglePlaces = async (query) => {
     return [];
   }
 };
-// export const searchGooglePlaces = async (query) => {
-//   try {
-//     const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
-//     const proxyUrl = "http://localhost:8080/";
-//     const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&key=${apiKey}`;
-
-//     const response = await fetch(proxyUrl + url);
-//     if (!response.ok) {
-//       throw new Error("Failed to fetch from Google Places API");
-//     }
-
-//     const data = await response.json();
-//     return data.results;
-//   } catch (error) {
-//     console.error("Error fetching data from Google Places API:", error);
-//     return [];
-//   }
-// };
-
-
-export const getAllLocations = () => {
-  return apiFetch('/locations?_embed=ratings');
+// Location-related API calls
+export const getAllLocations = async () => {
+  try {
+    const locations = await apiFetch('/locations');
+    const ratings = await apiFetch('/ratings');
+    
+    // Manually embed ratings if expand queries are not supported
+    return locations.map(location => ({
+      ...location,
+      ratings: ratings.filter(rating => rating.locationId === location.id)
+    }));
+  } catch (error) {
+    console.error("Error fetching locations with embedded ratings:", error);
+    return [];
+  }
 };
 
+// Rating-related API calls
 export const submitRating = (newReview) => {
   return apiFetch('/ratings', 'POST', newReview)
     .then(() => getAllLocations());
