@@ -18,7 +18,8 @@ Restroom Rater is a solo capstone project designed to allow users to rate restro
 * Firebase
 * JSON Server
 
-* https://restroom-rater.netlify.app/
+
+https://restroom-rater.netlify.app/
 
 ![HTTP Request/Response Cycle](./LocationList&Location.png)
 ![HTTP Request/Response Cycle](./EditExisting.png)
